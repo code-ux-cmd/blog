@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SSM框架之汽车租赁系统</title>
+    <url>/blog/2020/10/06/SSM%E6%A1%86%E6%9E%B6%E4%B9%8B%E6%B1%BD%E8%BD%A6%E7%A7%9F%E8%B5%81%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p>使用Layui+SSM框架：主要分为三大块功能：<strong>业务管理</strong>，<strong>系统管理</strong>，<strong>数据统计</strong>，其中<strong>业务管理</strong>功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；<strong>系统管理</strong>的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（调用阿里巴巴提供的接口，可以分析那个sql语句执行的快，那个执行的慢，用来优化）；<strong>数据统计</strong>：客户地区统计（饼图），公司年度月份销售额（折线图），业务员年度销售额（柱状图）</p>
+<a id="more"></a>
+
+<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><h1 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h1><blockquote>
+<p>涉及到11张表</p>
+</blockquote>
+<h2 id="业务表"><a href="#业务表" class="headerlink" title="业务表"></a>业务表</h2><ul>
+<li>客户表</li>
+<li>车辆表</li>
+<li>还车表</li>
+</ul>
+<h2 id="系统表（RBAC权限管理）"><a href="#系统表（RBAC权限管理）" class="headerlink" title="系统表（RBAC权限管理）"></a>系统表（RBAC权限管理）</h2><ul>
+<li>菜单表</li>
+<li>用户表</li>
+<li>角色表</li>
+<li>角色和菜单关系表</li>
+<li>用户和角色和关系表</li>
+</ul>
+<h2 id="系统表（其他）"><a href="#系统表（其他）" class="headerlink" title="系统表（其他）"></a>系统表（其他）</h2><ul>
+<li>登录日志表</li>
+<li>系统公告表</li>
+</ul>
+]]></content>
+      <categories>
+        <category>SSM项目实战</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>ssm框架</tag>
+        <tag>项目实战</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/blog/2020/10/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java学习</title>
     <url>/blog/2020/10/06/java%E9%AB%98%E7%BA%A7%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<p>java介绍</p>
@@ -56,29 +114,6 @@
         <tag>java</tag>
         <tag>复习</tag>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/blog/2020/10/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <tags>
-        <tag>入门</tag>
       </tags>
   </entry>
 </search>
