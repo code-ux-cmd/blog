@@ -6,7 +6,8 @@
     <content><![CDATA[<p>使用easyui+SSM框架：主要分为三大块功能：<strong>业务管理</strong>，<strong>系统管理</strong>，<strong>数据统计</strong>，其中<strong>业务管理</strong>功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；<strong>系统管理</strong>的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（调用阿里巴巴提供的接口，可以分析那个sql语句执行的快，那个执行的慢，用来优化）；<strong>数据统计</strong>：客户地区统计（饼图），公司年度月份销售额（折线图），业务员年度销售额（柱状图）</p>
 <a id="more"></a>
 
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><h2 id="业务功能"><a href="#业务功能" class="headerlink" title="业务功能"></a>业务功能</h2><h3 id="客户管理"><a href="#客户管理" class="headerlink" title="客户管理"></a>客户管理</h3><ul>
+<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><p><img src="https://i.loli.net/2020/10/07/7qehoXM3zfvEVFb.png" alt="汽车出租管理系统.png"></p>
+<h2 id="业务功能"><a href="#业务功能" class="headerlink" title="业务功能"></a>业务功能</h2><h3 id="客户管理"><a href="#客户管理" class="headerlink" title="客户管理"></a>客户管理</h3><ul>
 <li>客户列表</li>
 <li>客户分页和模糊查询</li>
 <li>客户添加</li>
@@ -142,6 +143,13 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>createtime</td>
+<td>录入时间</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <ul>
 <li>车辆表(bus_cars)</li>
@@ -219,9 +227,16 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>createtime</td>
+<td>录入时间</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <ul>
-<li>出租表(bus_rents)</li>
+<li>出租表(bus_rent)</li>
 </ul>
 <table>
 <thead>
@@ -289,6 +304,13 @@
 <td></td>
 <td>当前登陆人</td>
 </tr>
+<tr>
+<td>createtime</td>
+<td>录入时间</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <ul>
 <li>还车表(bus_checks)</li>
@@ -297,7 +319,7 @@
 <thead>
 <tr>
 <th><strong>字段名</strong></th>
-<th><strong>字段说明</strong></th>
+<th align="left"><strong>字段说明</strong></th>
 <th><strong>类型</strong></th>
 <th><strong>是否主键</strong></th>
 <th><strong>备注</strong></th>
@@ -305,50 +327,57 @@
 </thead>
 <tbody><tr>
 <td>checkid</td>
-<td>检查单号</td>
+<td align="left">检查单号</td>
 <td>varhcar</td>
 <td>是</td>
 <td>后台使用时间生成</td>
 </tr>
 <tr>
 <td>checkdate</td>
-<td>检查时间</td>
+<td align="left">检查时间</td>
 <td>datetime</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>checkdesc</td>
-<td>描述</td>
+<td align="left">描述</td>
 <td>varchar</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>problem</td>
-<td>存在问题</td>
+<td align="left">存在问题</td>
 <td>varchar</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>paymoney</td>
-<td>赔付金额</td>
+<td align="left">赔付金额</td>
 <td>double</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>opername</td>
-<td>操作员</td>
+<td align="left">操作员</td>
 <td>varchar</td>
 <td></td>
 <td>当前登陆人</td>
 </tr>
 <tr>
 <td>rentid</td>
-<td>出租单号</td>
+<td align="left">出租单号</td>
 <td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>createtime</td>
+<td align="left">录入时间</td>
+<td>datetime</td>
 <td></td>
 <td></td>
 </tr>
