@@ -22,20 +22,22 @@
     var CONFIG = {"hostname":"gitee.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="使用Layui+SSM框架：主要分为三大块功能：业务管理，系统管理，数据统计，其中业务管理功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；系统管理的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（调">
+  <meta name="description" content="使用easyui+SSM框架：主要分为三大块功能：业务管理，系统管理，数据统计，其中业务管理功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；系统管理的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSM框架之汽车租赁系统">
 <meta property="og:url" content="https://gitee.com/SHUAI_code/blog.git/2020/10/06/SSM%E6%A1%86%E6%9E%B6%E4%B9%8B%E6%B1%BD%E8%BD%A6%E7%A7%9F%E8%B5%81%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="哼着我的小调调">
-<meta property="og:description" content="使用Layui+SSM框架：主要分为三大块功能：业务管理，系统管理，数据统计，其中业务管理功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；系统管理的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（调">
+<meta property="og:description" content="使用easyui+SSM框架：主要分为三大块功能：业务管理，系统管理，数据统计，其中业务管理功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；系统管理的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/10/07/wqvUj5zZdroxuHC.png">
 <meta property="article:published_time" content="2020-10-06T10:40:55.894Z">
-<meta property="article:modified_time" content="2020-10-06T13:38:17.233Z">
+<meta property="article:modified_time" content="2020-10-07T08:36:29.494Z">
 <meta property="article:author" content="Blue">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="ssm框架">
 <meta property="article:tag" content="项目实战">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/07/wqvUj5zZdroxuHC.png">
 
 <link rel="canonical" href="https://gitee.com/SHUAI_code/blog.git/2020/10/06/SSM%E6%A1%86%E6%9E%B6%E4%B9%8B%E6%B1%BD%E8%BD%A6%E7%A7%9F%E8%B5%81%E9%A1%B9%E7%9B%AE/">
 
@@ -221,10 +223,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-10-06 18:40:55 / 修改时间：21:38:17" itemprop="dateCreated datePublished" datetime="2020-10-06T18:40:55+08:00">2020-10-06</time>
+              <time title="创建时间：2020-10-06 18:40:55" itemprop="dateCreated datePublished" datetime="2020-10-06T18:40:55+08:00">2020-10-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-07 16:36:29" itemprop="dateModified" datetime="2020-10-07T16:36:29+08:00">2020-10-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -241,14 +249,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>414</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -260,28 +268,706 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>使用Layui+SSM框架：主要分为三大块功能：<strong>业务管理</strong>，<strong>系统管理</strong>，<strong>数据统计</strong>，其中<strong>业务管理</strong>功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；<strong>系统管理</strong>的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（调用阿里巴巴提供的接口，可以分析那个sql语句执行的快，那个执行的慢，用来优化）；<strong>数据统计</strong>：客户地区统计（饼图），公司年度月份销售额（折线图），业务员年度销售额（柱状图）</p>
+        <p>使用easyui+SSM框架：主要分为三大块功能：<strong>业务管理</strong>，<strong>系统管理</strong>，<strong>数据统计</strong>，其中<strong>业务管理</strong>功能包括客户管理的添加，修改，删除，导出（excel）；车辆管理的添加，修改，上传（图片使用异步上传）；汽车出租的添加，修改，删除；出租单管理的修改，删除，导出（出租单二维码）；车辆入库功能的查询，修改，导出（excel）；<strong>系统管理</strong>的：菜单管理，角色管理，用户管理，修改密码，日志管理，系统公告，数据源监控（调用阿里巴巴提供的接口，可以分析那个sql语句执行的快，那个执行的慢，用来优化）；<strong>数据统计</strong>：客户地区统计（饼图），公司年度月份销售额（折线图），业务员年度销售额（柱状图）</p>
 <a id="more"></a>
 
-<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><h1 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h1><blockquote>
+<h1 id="功能分析"><a href="#功能分析" class="headerlink" title="功能分析"></a>功能分析</h1><h2 id="业务功能"><a href="#业务功能" class="headerlink" title="业务功能"></a>业务功能</h2><h3 id="客户管理"><a href="#客户管理" class="headerlink" title="客户管理"></a>客户管理</h3><ul>
+<li>客户列表</li>
+<li>客户分页和模糊查询</li>
+<li>客户添加</li>
+<li>客户修改</li>
+<li>客户删除</li>
+<li>导出客户数据</li>
+</ul>
+<h3 id="车辆管理"><a href="#车辆管理" class="headerlink" title="车辆管理"></a>车辆管理</h3><ul>
+<li>车辆列表</li>
+<li>车辆分页和模糊查询</li>
+<li>车辆添加</li>
+<li>车辆修改</li>
+<li>车辆删除</li>
+</ul>
+<h3 id="汽车出租"><a href="#汽车出租" class="headerlink" title="汽车出租"></a>汽车出租</h3><ul>
+<li>根据客户身份证查询所有未出租的车辆信息</li>
+<li>汽车出租</li>
+</ul>
+<h3 id="出租单位管理"><a href="#出租单位管理" class="headerlink" title="出租单位管理"></a>出租单位管理</h3><ul>
+<li>多条件模糊查询和分页</li>
+<li>出租单修改</li>
+<li>出租单删除</li>
+<li>导出出租单</li>
+</ul>
+<h3 id="汽车入库"><a href="#汽车入库" class="headerlink" title="汽车入库"></a>汽车入库</h3><ul>
+<li>根据出租单号查询出租单的信息并显示</li>
+</ul>
+<h3 id="检查单管理"><a href="#检查单管理" class="headerlink" title="检查单管理"></a>检查单管理</h3><ul>
+<li>多条件模糊查询和分页</li>
+<li>检查单修改</li>
+<li>导出检查单</li>
+</ul>
+<h2 id="统计分析"><a href="#统计分析" class="headerlink" title="统计分析"></a>统计分析</h2><ul>
+<li>客户地区图</li>
+<li>公式年度月份销售额曲线图</li>
+<li>业务员年度销售额柱子图</li>
+</ul>
+<h2 id="系统功能"><a href="#系统功能" class="headerlink" title="系统功能"></a>系统功能</h2><h3 id="用户登录"><a href="#用户登录" class="headerlink" title="用户登录"></a>用户登录</h3><ul>
+<li>校验用户名和密码</li>
+<li>登录成功之后写入登录日志</li>
+<li>未登录拦截</li>
+</ul>
+<h3 id="菜单管理"><a href="#菜单管理" class="headerlink" title="菜单管理"></a>菜单管理</h3><ul>
+<li>全查询菜单和根据左边的树查询菜单</li>
+<li>添加菜单</li>
+<li>修改菜单</li>
+<li>删除菜单</li>
+</ul>
+<h3 id="角色管理"><a href="#角色管理" class="headerlink" title="角色管理"></a>角色管理</h3><ul>
+<li>全查询加模糊查询</li>
+<li>添加角色</li>
+<li>修改角色</li>
+<li>删除角色</li>
+<li>分配菜单</li>
+</ul>
+<h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><ul>
+<li>全查询加模糊查询</li>
+<li>添加用户</li>
+<li>修改用户</li>
+<li>删除用户</li>
+<li>分配角色</li>
+<li>密码复位</li>
+</ul>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><ul>
+<li>修改当前用户的密码</li>
+</ul>
+<h3 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h3><ul>
+<li>查询</li>
+<li>删除</li>
+</ul>
+<h3 id="系统公告管理"><a href="#系统公告管理" class="headerlink" title="系统公告管理"></a>系统公告管理</h3><ul>
+<li>查询</li>
+<li>添加</li>
+<li>修改</li>
+<li>删除</li>
+<li>工作台的系统公告</li>
+</ul>
+<h1 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h1><blockquote>
 <p>涉及到11张表</p>
 </blockquote>
 <h2 id="业务表"><a href="#业务表" class="headerlink" title="业务表"></a>业务表</h2><ul>
-<li>客户表</li>
-<li>车辆表</li>
-<li>还车表</li>
+<li>客户表（bus_customers）</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>identity</td>
+<td>身份证</td>
+<td>varhcar</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>custname</td>
+<td>姓名</td>
+<td>Varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sex</td>
+<td>性别</td>
+<td>Int</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>address</td>
+<td>地址</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>电话</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>career</td>
+<td>职位</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>车辆表(bus_cars)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>carnumber</td>
+<td>车牌号</td>
+<td>varhcar</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>cartype</td>
+<td>类型</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>color</td>
+<td>颜色</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>price</td>
+<td>购买价格</td>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rentprice</td>
+<td>出租价格</td>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>deposit</td>
+<td>押金</td>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isrenting</td>
+<td>是否出租</td>
+<td>int</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>描述</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>carimg</td>
+<td>车辆图片</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>出租表(bus_rents)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rentid</td>
+<td>出租单号</td>
+<td>varhcar</td>
+<td>是</td>
+<td>后台使用时间生成</td>
+</tr>
+<tr>
+<td>price</td>
+<td>出租实际价格</td>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>begindate</td>
+<td>开始时间</td>
+<td>Datetime</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>returndate</td>
+<td>还车时间</td>
+<td>Datetime</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rentflag</td>
+<td>出租状态</td>
+<td>int</td>
+<td></td>
+<td>0未归还1已归还</td>
+</tr>
+<tr>
+<td>identity</td>
+<td>客户身份证</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>carnumber</td>
+<td>车牌号</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>opername</td>
+<td>操作员</td>
+<td>varchar</td>
+<td></td>
+<td>当前登陆人</td>
+</tr>
+</tbody></table>
+<ul>
+<li>还车表(bus_checks)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>checkid</td>
+<td>检查单号</td>
+<td>varhcar</td>
+<td>是</td>
+<td>后台使用时间生成</td>
+</tr>
+<tr>
+<td>checkdate</td>
+<td>检查时间</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>checkdesc</td>
+<td>描述</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>problem</td>
+<td>存在问题</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>paymoney</td>
+<td>赔付金额</td>
+<td>double</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>opername</td>
+<td>操作员</td>
+<td>varchar</td>
+<td></td>
+<td>当前登陆人</td>
+</tr>
+<tr>
+<td>rentid</td>
+<td>出租单号</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id="系统表（RBAC权限管理）"><a href="#系统表（RBAC权限管理）" class="headerlink" title="系统表（RBAC权限管理）"></a>系统表（RBAC权限管理）</h2><ul>
-<li>菜单表</li>
-<li>用户表</li>
-<li>角色表</li>
-<li>角色和菜单关系表</li>
-<li>用户和角色和关系表</li>
+<li>菜单表(sys_menus)</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>ID</td>
+<td>Int</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>pid</td>
+<td>父节点id</td>
+<td>Int</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>菜单名称</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>href</td>
+<td>跳转地址</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>是否打开</td>
+<td>Int</td>
+<td></td>
+<td>0不打1打开</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>是否父节点</td>
+<td>Int</td>
+<td></td>
+<td>0非父节点1父节点</td>
+</tr>
+<tr>
+<td>target</td>
+<td>打开方式</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>icon</td>
+<td>节点图标</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tabicon</td>
+<td>Tab图标</td>
+<td>varchar</td>
+<td></td>
+<td><img src="https://i.loli.net/2020/10/07/wqvUj5zZdroxuHC.png" alt="image.png"></td>
+</tr>
+<tr>
+<td>available</td>
+<td>是否可用</td>
+<td>Int</td>
+<td></td>
+<td>0不可用1可用</td>
+</tr>
+</tbody></table>
+<ul>
+<li>用户表(sys_users)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>userid</td>
+<td>用户编号</td>
+<td>Int</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>loginname</td>
+<td>登陆名</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>identity</td>
+<td>身份证号</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>realname</td>
+<td>真实名称</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sex</td>
+<td>性别</td>
+<td>Int</td>
+<td></td>
+<td>0女1男</td>
+</tr>
+<tr>
+<td>address</td>
+<td>地址</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>电话</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>密码</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>position</td>
+<td>职位</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>用户类型</td>
+<td>Int</td>
+<td></td>
+<td>1，超级管理员  2，系统用户  Where  type&lt;&gt;1</td>
+</tr>
+</tbody></table>
+<ul>
+<li>角色表1.   (sys_roles)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>roleid</td>
+<td>角色编号</td>
+<td>Int</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>rolename</td>
+<td>角色名称</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>roledesc</td>
+<td>角色备注</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>角色和菜单关系表 (sys_role_menu)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>rid</td>
+<td>角色编号</td>
+<td>Int</td>
+<td>是</td>
+<td>角色表的roleid外键</td>
+</tr>
+<tr>
+<td>mid</td>
+<td>菜单编号</td>
+<td>Int</td>
+<td>是</td>
+<td>菜单表的id外键</td>
+</tr>
+</tbody></table>
+<ul>
+<li>用户和角色和关系表(sys_role_user)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>uid</td>
+<td>用户编号</td>
+<td>Int</td>
+<td>是</td>
+<td>用户表的userid外键</td>
+</tr>
+<tr>
+<td>rid</td>
+<td>角色编号</td>
+<td>Int</td>
+<td>是</td>
+<td>角色表的roleid外键</td>
+</tr>
+</tbody></table>
 <h2 id="系统表（其他）"><a href="#系统表（其他）" class="headerlink" title="系统表（其他）"></a>系统表（其他）</h2><ul>
-<li>登录日志表</li>
-<li>系统公告表</li>
+<li>登录日志表(sys_log_login)</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>日志ID</td>
+<td>Int</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>loginname</td>
+<td>登陆名+真实姓名</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>loginip</td>
+<td>登陆IP</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>logintime</td>
+<td>登陆时间</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>系统公告表(sys_news)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>字段名</strong></th>
+<th><strong>字段说明</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>是否主键</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>编号</td>
+<td>Int</td>
+<td>是</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>标题</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Content</td>
+<td>内容</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>createtime</td>
+<td>发布时间</td>
+<td>datetime</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>opername</td>
+<td>发布人</td>
+<td>varchar</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1d4411r7vn?p=3">https://www.bilibili.com/video/BV1d4411r7vn?p=3</a></p>
 
     </div>
@@ -381,7 +1067,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">功能分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">数据库表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">业务表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%A1%A8%EF%BC%88RBAC%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">系统表（RBAC权限管理）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%A1%A8%EF%BC%88%E5%85%B6%E4%BB%96%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">系统表（其他）</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">功能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">业务功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.1.</span> <span class="nav-text">客户管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%A6%E8%BE%86%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.2.</span> <span class="nav-text">车辆管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%BD%E8%BD%A6%E5%87%BA%E7%A7%9F"><span class="nav-number">1.1.3.</span> <span class="nav-text">汽车出租</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BA%E7%A7%9F%E5%8D%95%E4%BD%8D%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.4.</span> <span class="nav-text">出租单位管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%BD%E8%BD%A6%E5%85%A5%E5%BA%93"><span class="nav-number">1.1.5.</span> <span class="nav-text">汽车入库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E5%8D%95%E7%AE%A1%E7%90%86"><span class="nav-number">1.1.6.</span> <span class="nav-text">检查单管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">统计分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">系统功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">用户登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">菜单管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E8%89%B2%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.3.</span> <span class="nav-text">角色管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.4.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-number">1.3.5.</span> <span class="nav-text">修改密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.6.</span> <span class="nav-text">日志管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%85%AC%E5%91%8A%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.7.</span> <span class="nav-text">系统公告管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text">数据库表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">业务表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%A1%A8%EF%BC%88RBAC%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">系统表（RBAC权限管理）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E8%A1%A8%EF%BC%88%E5%85%B6%E4%BB%96%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">系统表（其他）</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -446,12 +1132,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">10k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">9 分钟</span>
 </div>
 
         
