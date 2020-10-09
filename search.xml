@@ -732,8 +732,7 @@
 <td></td>
 </tr>
 </tbody></table>
-<p><a href="https://www.bilibili.com/video/BV1d4411r7vn?p=3">https://www.bilibili.com/video/BV1d4411r7vn?p=3</a></p>
-]]></content>
+<h1 id="搭建环境（eclipse）"><a href="#搭建环境（eclipse）" class="headerlink" title="搭建环境（eclipse）"></a>搭建环境（eclipse）</h1>]]></content>
       <categories>
         <category>SSM项目实战</category>
       </categories>
@@ -898,6 +897,46 @@
         <tag>java</tag>
         <tag>复习</tag>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oracle11g在windows环境下完全卸载</title>
+    <url>/blog/2020/10/09/oracle11g%E5%9C%A8windows10%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%8C%E5%85%A8%E5%8D%B8%E8%BD%BD/</url>
+    <content><![CDATA[<p>oracle11g卸载</p>
+<a id="more"></a>
+
+<h1 id="1-停止所有oracle相关的服务"><a href="#1-停止所有oracle相关的服务" class="headerlink" title="1.停止所有oracle相关的服务"></a>1.停止所有oracle相关的服务</h1><p><strong>步骤：控制面板－＞管理工具－＞服务停止所有Oracle服务</strong>。</p>
+<p><img src="https://i.loli.net/2020/10/09/grk6Vv7IhOU4Tit.png" alt="image.png"></p>
+<h1 id="2-卸载oracle"><a href="#2-卸载oracle" class="headerlink" title="2.卸载oracle"></a>2.卸载oracle</h1><p>搜索Universal Installer</p>
+<p><img src="https://i.loli.net/2020/10/09/RJ8N6LWY4ghbc1K.png" alt="image.png"></p>
+<p>点击卸载产品</p>
+<p><img src="https://i.loli.net/2020/10/09/WublcLNPkT2azKI.png" alt="image.png"></p>
+<p>注意这个目录不要选</p>
+<p><img src="https://i.loli.net/2020/10/09/pnL4Qy9EV1HYfeb.png" alt="image.png"></p>
+<p>然后点击删除，选择是</p>
+<p><img src="https://i.loli.net/2020/10/09/WZBaO3stIGAYCiE.png" alt="image.png"></p>
+<p>删除中</p>
+<p><img src="https://i.loli.net/2020/10/09/WMjbPrHtXsBpy8k.png" alt="image.png"></p>
+<p>卸载完成之后，点击关闭</p>
+<p><img src="https://i.loli.net/2020/10/09/IVkDUjebtAo12hg.png" alt="image.png"></p>
+<p>关闭窗口</p>
+<p><img src="https://i.loli.net/2020/10/09/8rSPC3hsDTE6jFN.png" alt="image.png"></p>
+<h1 id="3-清空注册表"><a href="#3-清空注册表" class="headerlink" title="3.清空注册表"></a>3.清空注册表</h1><p>windows+R键-&gt;输入regedit-&gt;回车 打开注册表</p>
+<p>找到HKEY_LOCAL_MACHINE -&gt;SOFTWARE-&gt;ORACLE 删除ORACLE及其子项（直接删除ORACLE目录）</p>
+<p><img src="https://i.loli.net/2020/10/09/EfyRuCnwoHtmgIv.png" alt="image.png"></p>
+<p>找到HKEY_LOCAL_MACHINE-&gt;SYSTEM-&gt;CurrentControlSet-&gt;Services中，删除所有oracle开头的服务。</p>
+<p><img src="https://i.loli.net/2020/10/09/DjAsPRXC37Oalqz.png" alt="image.png"></p>
+<p>找到HKEY_LOCAL_MACHINE-&gt;SYSTEM-&gt;CurrentControlSet-&gt;Services-&gt;Eventlog-&gt;Application，删除所有oracle开头的项</p>
+<p><img src="https://i.loli.net/2020/10/09/6ZHcRhgpaQO1Irl.png" alt="image.png"></p>
+<p>在HKEY_CLASSES_ROOT，删除以ora开头的项</p>
+<p><img src="https://i.loli.net/2020/10/09/saiW1OEmRBgz8xP.png" alt="image.png"></p>
+<h1 id="4-重启电脑"><a href="#4-重启电脑" class="headerlink" title="4.重启电脑"></a>4.重启电脑</h1><h1 id="5-删除安装目录"><a href="#5-删除安装目录" class="headerlink" title="5.删除安装目录"></a>5.删除安装目录</h1>]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+        <tag>工作日志</tag>
       </tags>
   </entry>
 </search>
