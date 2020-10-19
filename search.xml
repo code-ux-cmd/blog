@@ -1669,4 +1669,53 @@
         <tag>版本控制</tag>
       </tags>
   </entry>
+  <entry>
+    <title>oracle11g删除某一用户下所有表</title>
+    <url>/blog/2020/10/19/Oracle%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E4%B8%8B%E6%89%80%E6%9C%89%E8%A1%A8/</url>
+    <content><![CDATA[<p>oracle11g删除数据</p>
+<a id="more"></a>
+
+<p>在命令窗口执行</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;drop  table &#x27;</span>|| table_name || <span class="string">&#x27;;&#x27;</span> <span class="keyword">FROM</span> USER_TABLES <span class="keyword">ORDER</span> <span class="keyword">BY</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgchr.com/i/0xrL3n"><img src="https://s1.ax1x.com/2020/10/19/0xrL3n.png" alt="0xrL3n.png"></a></p>
+<p>然后将查询的结果复制之后重新执行</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+        <tag>工作日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oracle11g创建用户并指定表空间</title>
+    <url>/blog/2020/10/19/oracle%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8C%87%E5%AE%9A%E8%A1%A8%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<p>oracle创建表空间并赋值给用户</p>
+<a id="more"></a>
+
+
+
+
+
+<h1 id="创建表空间"><a href="#创建表空间" class="headerlink" title="创建表空间"></a>创建表空间</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> eprk</span><br><span class="line"><span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">&#x27;D:\oracle\oradata\orcl\eprk.dbf&#x27;</span><span class="comment">#表空间的路径</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">100</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span></span><br><span class="line"><span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="number">20480</span>m <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建qh2用户并指定表空间"><a href="#创建qh2用户并指定表空间" class="headerlink" title="创建qh2用户并指定表空间"></a>创建qh2用户并指定表空间</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> qh2 <span class="keyword">identified</span> <span class="keyword">by</span> <span class="number">123456</span></span><br><span class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> eprk</span><br><span class="line"><span class="keyword">temporary</span> <span class="keyword">tablespace</span> temp profile <span class="keyword">default</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="给qh2用户授予权限"><a href="#给qh2用户授予权限" class="headerlink" title="给qh2用户授予权限"></a>给qh2用户授予权限</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span> <span class="keyword">to</span> qh2;</span><br><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> qh2;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="远程导入dmp文件"><a href="#远程导入dmp文件" class="headerlink" title="远程导入dmp文件"></a>远程导入dmp文件</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">cd /d D:\oraclexe\app\oracle\product\11.2.0\server\bin</span><br><span class="line"></span><br><span class="line">imp qh2/123456@192.168.0.1:1521/orcl file=G:\global.dmp full=y</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+        <tag>工作日志</tag>
+      </tags>
+  </entry>
 </search>
