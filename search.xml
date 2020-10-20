@@ -75,7 +75,70 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;script src&#x3D;&quot;..&#x2F;js&#x2F;vue.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">    &lt;h2&gt;当前计数为：&#123;&#123;counter&#125;&#125;&lt;&#x2F;h2&gt;</span><br><span class="line">   &lt;!-- &lt;button v-on:click&#x3D;&quot;counter&amp;#45;&amp;#45;&quot;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button v-on:click&#x3D;&quot;counter++&quot;&gt;+&lt;&#x2F;button&gt;--&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;add&quot;&gt;+&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;button @click&#x3D;&quot;sub&quot;&gt;-&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    const app &#x3D; new Vue(&#123;</span><br><span class="line">        el:&#39;#app&#39;,</span><br><span class="line">        data:&#123;</span><br><span class="line">            counter:0</span><br><span class="line">        &#125;,</span><br><span class="line">        methods:&#123;</span><br><span class="line">            add: function () &#123;</span><br><span class="line">                console.log(&#39;add被执行&#39;);</span><br><span class="line">                this.counter++</span><br><span class="line">            &#125;,</span><br><span class="line">            sub:function () &#123;</span><br><span class="line">                console.log(&#39;sub被执行&#39;);</span><br><span class="line">                this.counter--</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.loli.net/2020/10/06/R1GS7TiP2lwkNhE.png" alt="image.png"></p>
-<h2 id="Vue中的MVVM"><a href="#Vue中的MVVM" class="headerlink" title="Vue中的MVVM"></a>Vue中的MVVM</h2><h2 id="绑定元素方式attribute"><a href="#绑定元素方式attribute" class="headerlink" title="绑定元素方式attribute"></a>绑定元素方式attribute</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--绑定元素attribute--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/vue&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line">        鼠标悬停几秒后看见</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">&#x27;#app2&#x27;</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line"><span class="javascript">            message:<span class="string">&#x27;页面加载于 &#x27;</span>+ <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Vue中的MVVM"><a href="#Vue中的MVVM" class="headerlink" title="Vue中的MVVM"></a>Vue中的MVVM</h2><h3 id="MVVM概念"><a href="#MVVM概念" class="headerlink" title="MVVM概念"></a>MVVM概念</h3><ul>
+<li><p>View层：</p>
+<ul>
+<li>视图层</li>
+<li>在我们前端开发中，通常就是DOM层。</li>
+<li>主要的作用是给用户展示各种信息。</li>
+</ul>
+</li>
+<li><p>Model层：</p>
+<ul>
+<li>数据层</li>
+<li>数据可能是我们固定的死数据，更多的是来自我们服务器，从网络上请求下来的数据。</li>
+<li>在我们计数器的案例中，就是后面抽取出来的obj，当然，里面的数据可能没有这么简单。</li>
+</ul>
+</li>
+<li><p>VueModel层：</p>
+<ul>
+<li>视图模型层</li>
+<li>视图模型层是View和Model沟通的桥梁。</li>
+<li>一方面它实现了Data Binding，也就是数据绑定，将Model的改变实时的反应到View中</li>
+<li>另一方面它实现了DOM Listener，也就是DOM监听，当DOM发生一些事件(点击、滚动、touch等)时，可以监听到，并在需要的情况下改变对应的Data。</li>
+</ul>
+</li>
+</ul>
+<h3 id="计算器的MVVM"><a href="#计算器的MVVM" class="headerlink" title="计算器的MVVM"></a>计算器的MVVM</h3><ul>
+<li><p>View依然是我们的DOM</p>
+</li>
+<li><p>Model就是我们我们抽离出来的obj</p>
+</li>
+<li><p>ViewModel就是我们创建的Vue对象实例</p>
+</li>
+</ul>
+<p><strong>工作流程：</strong></p>
+<ul>
+<li><p>首先ViewModel通过Data Binding让obj中的数据实时的在DOM中显示。</p>
+</li>
+<li><p>其次ViewModel通过DOM Listener来监听DOM事件，并且通过methods中的操作，来改变obj中的数据。</p>
+</li>
+</ul>
+<h2 id="Vue的options"><a href="#Vue的options" class="headerlink" title="Vue的options"></a>Vue的options</h2><p><a href="https://cn.vuejs.org/v2/api/#%E9%80%89%E9%A1%B9-%E6%95%B0%E6%8D%AE">Vue的options中所有选项</a></p>
+<p>常用的选项：</p>
+<ul>
+<li><p>el：</p>
+<ul>
+<li>类型：string | HTMLElement</li>
+<li>作用：决定之后Vue实例会管理哪一个DOM。</li>
+</ul>
+</li>
+<li><p><strong>data:</strong> </p>
+<ul>
+<li>类型：Object | Function （组件当中data必须是一个函数）</li>
+<li>作用：Vue实例对应的数据对象。</li>
+</ul>
+</li>
+<li><p>methods:</p>
+<ul>
+<li><p>类型：{ [key: string]: Function }</p>
+</li>
+<li><p>作用：定义属于Vue的一些方法，可以在其他地方调用，也可以在指令中使用</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="绑定元素方式attribute"><a href="#绑定元素方式attribute" class="headerlink" title="绑定元素方式attribute"></a>绑定元素方式attribute</h2><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--绑定元素attribute--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/vue&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line">        鼠标悬停几秒后看见</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        el:<span class="string">&#x27;#app2&#x27;</span>,</span></span><br><span class="line">        data:&#123;</span><br><span class="line"><span class="javascript">            message:<span class="string">&#x27;页面加载于 &#x27;</span>+ <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>运行结果：</p>
 <p><img src="https://i.loli.net/2020/10/06/fDNOcJvELXZQomH.png" alt="image.png"></p>
@@ -84,8 +147,11 @@
 <li>控制台修改</li>
 </ul>
 <p><img src="https://i.loli.net/2020/10/06/ulIsvZ4o3EgWfQc.png" alt="image.png"></p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="插值操作"><a href="#插值操作" class="headerlink" title="插值操作"></a>插值操作</h2><h3 id="Mustache语法（双大括号）"><a href="#Mustache语法（双大括号）" class="headerlink" title="Mustache语法（双大括号）"></a>Mustache语法（双大括号）</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;../js/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;firstName+&#x27; &#x27; +lastName&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;firstName+lastName&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;firstName&#125;&#125; &#123;&#123;lastName&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;counter * 2&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">            el: <span class="string">&#x27;#app&#x27;</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="javascript">                message: <span class="string">&#x27;hello&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                firstName: <span class="string">&#x27;张&#x27;</span>,</span></span><br><span class="line"><span class="javascript">                lastName: <span class="string">&#x27;三&#x27;</span>,</span></span><br><span class="line">                counter: 100</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s1.ax1x.com/2020/10/20/BpBQln.png" alt="BpBQln.png"></p>
 <p>！！！！下次该学</p>
-<p><a href="https://www.bilibili.com/video/BV15741177Eh?p=5">https://www.bilibili.com/video/BV15741177Eh?p=5</a></p>
+<p><a href="https://www.bilibili.com/video/BV15741177Eh?p=5">链接</a></p>
 ]]></content>
       <categories>
         <category>前端</category>
