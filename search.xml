@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>oracle11g删除某一用户下所有表</title>
+    <url>/blog/2020/10/19/Oracle%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E4%B8%8B%E6%89%80%E6%9C%89%E8%A1%A8/</url>
+    <content><![CDATA[<p>oracle11g删除数据</p>
+<a id="more"></a>
+
+<p>在命令窗口执行</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;drop  table &#x27;</span>|| table_name || <span class="string">&#x27;;&#x27;</span> <span class="keyword">FROM</span> USER_TABLES <span class="keyword">ORDER</span> <span class="keyword">BY</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgchr.com/i/0xrL3n"><img src="https://s1.ax1x.com/2020/10/19/0xrL3n.png" alt="0xrL3n.png"></a></p>
+<p>然后将查询的结果复制之后重新执行</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+        <tag>工作日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue.js学习</title>
     <url>/blog/2020/10/06/VUE/</url>
     <content><![CDATA[<p>Vue是一个渐进式的框架，意味着你可以将Vue作为你应用的一部分嵌入其中，带来丰富的交互体验<a id="more"></a></p>
@@ -74,6 +94,154 @@
         <tag>vue</tag>
         <tag>前端</tag>
         <tag>学习笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git学习笔记</title>
+    <url>/blog/2020/10/15/git%E5%85%A5%E9%97%A8%E5%88%B0%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>通过观看狂神讲师的视频所做的笔记，以便后来自己复习：<a href="https://www.bilibili.com/video/BV1FE411P7B3?p=1">地址</a></p>
+<a id="more"></a>
+
+<h1 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h1><blockquote>
+<p>版本控制（Revision control）是一种在开发的过程中用于管理我们对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。</p>
+</blockquote>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
+<li>实现跨区域多人协同开发</li>
+<li>追踪和记载一个或者多个文件的历史记录</li>
+<li>组织和保护你的源代码和文档</li>
+<li>统计工作量</li>
+<li>并行开发、提高开发效率</li>
+<li>跟踪记录整个软件的开发过程</li>
+<li>减轻开发人员的负担，节省时间，同时降低人为错误</li>
+</ul>
+<p>简单说就是用于管理多人协同开发项目的技术。</p>
+<p>没有进行版本控制或者版本控制本身缺乏正确的流程管理，在软件开发过程中将会引入很多问题，如软件代码的一致性、软件内容的冗余、软件过程的事物性、软件开发过程中的并发性、软件源代码的安全性，以及软件的整合等问题。</p>
+<p>无论是工作还是学习，或者是自己做笔记，都经历过这样一个阶段！我们就迫切需要一个版本控制工具！</p>
+<h2 id="常见的版本控制"><a href="#常见的版本控制" class="headerlink" title="常见的版本控制"></a>常见的版本控制</h2><ul>
+<li><strong>Git</strong></li>
+<li><strong>SVN</strong>（Subversion）</li>
+<li><strong>CVS</strong>（Concurrent Versions System）</li>
+<li><strong>VSS</strong>（Micorosoft Visual SourceSafe）</li>
+<li><strong>TFS</strong>（Team Foundation Server）</li>
+<li>Visual Studio Online</li>
+</ul>
+<p>现在影响力最大且使用最广泛的是Git与SVN</p>
+<h2 id="版本控制分类"><a href="#版本控制分类" class="headerlink" title="版本控制分类"></a>版本控制分类</h2><h3 id="本地版本控制"><a href="#本地版本控制" class="headerlink" title="本地版本控制"></a>本地版本控制</h3><p>记录文件每次的更新，可以对每个版本做一个快照，或是记录补丁文件，适合个人用，如RCS。</p>
+<p><img src="https://s1.ax1x.com/2020/10/15/07CAAA.png" alt="07CAAA.png"></p>
+<h3 id="集中版本控制-SVN"><a href="#集中版本控制-SVN" class="headerlink" title="集中版本控制  SVN"></a>集中版本控制  SVN</h3><p>所有的版本数据都保存在服务器上，协同开发者从服务器上同步更新或上传自己的修改</p>
+<p><img src="https://s1.ax1x.com/2020/10/15/07CMng.png" alt="07CMng.png"></p>
+<p><strong>缺点：</strong>所有的版本数据都存在服务器上，用户的本地只有自己以前所同步的版本，如果不连网的话，用户就看不到历史版本，也无法切换版本验证问题，或在不同分支工作。而且，所有数据都保存在单一的服务器上，有很大的风险这个服务器会损坏，这样就会丢失所有的数据，当然可以定期备份。代表产品：SVN、CVS、VSS</p>
+<h3 id="分布式版本控制-Git"><a href="#分布式版本控制-Git" class="headerlink" title="分布式版本控制 Git"></a>分布式版本控制 Git</h3><p>所有版本信息仓库全部同步到本地的每个用户，这样就可以在本地查看所有版本历史，可以离线在本地提交，只需在连网时push到相应的服务器或其他用户那里。由于每个用户那里保存的都是所有的版本数据，只要有一个用户的设备没有问题就可以恢复所有的数据，但这增加了本地存储空间的占用。</p>
+<p><img src="https://s1.ax1x.com/2020/10/15/07CrNR.png" alt="07CrNR.png"></p>
+<h2 id="Git和SVN的主要区别"><a href="#Git和SVN的主要区别" class="headerlink" title="Git和SVN的主要区别"></a>Git和SVN的主要区别</h2><p>SVN是集中式版本控制系统，版本库是集中放在中央服务器的，而工作的时候，用的都是自己的电脑，所以首先要从中央服务器得到最新的版本，然后工作，完成工作后，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，对网络带宽要求较高。</p>
+<p>Git是分布式版本控制系统，没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网了，因为版本都在自己电脑上。协同的方法是这样的：比如说自己在电脑上改了文件A，其他人也在电脑上改了文件A，这时，你们两之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。Git可以直接看到更新了哪些代码和文件！</p>
+<p><strong>Git是目前世界上最先进的分布式版本控制系统。</strong></p>
+<h1 id="Git历史"><a href="#Git历史" class="headerlink" title="Git历史"></a>Git历史</h1><p>同生活中的许多伟大事物一样，Git 诞生于一个极富纷争大举创新的年代。</p>
+<p>Linux 内核开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上(1991－2002年间)。到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。</p>
+<p>Linux社区中存在很多的大佬！破解研究 BitKeeper ！</p>
+<p>到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的缔造者 Linus Torvalds)基于使用 BitKeeper 时的经验教训，开发出自己的版本系统。（2周左右！） 也就是后来的 Git！</p>
+<p><strong>Git是目前世界上最先进的分布式版本控制系统。</strong></p>
+<p>Git是免费、开源的，最初Git是为辅助 Linux 内核开发的，来替代 BitKeeper！</p>
+<p>Linux和Git之父李纳斯·托沃兹（Linus Benedic Torvalds）1969、芬兰</p>
+<h1 id="git环境配置"><a href="#git环境配置" class="headerlink" title="git环境配置"></a>git环境配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://npm.taobao.org/mirrors/git-for-windows/">淘宝镜像网址</a></p>
+<p><a href="https://www.bilibili.com/video/BV1FE411P7B3?p=4">安装教程</a></p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p><strong>Git Bash：</strong>Unix与Linux风格的命令行，使用最多，推荐最多</p>
+<p><strong>Git CMD：</strong>Windows风格的命令行</p>
+<p><strong>Git GUI</strong>：图形界面的Git，不建议初学者使用，尽量先熟悉常用命令</p>
+<h2 id="基本linux命令"><a href="#基本linux命令" class="headerlink" title="基本linux命令"></a>基本linux命令</h2><p>1）、cd : 改变目录。</p>
+<p>2）、cd . . 回退到上一个目录，直接cd进入默认目录</p>
+<p>3）、pwd : 显示当前所在的目录路径。</p>
+<p>4）、ls(ll):  都是列出当前目录中的所有文件，只不过ll(两个ll)列出的内容更为详细。</p>
+<p>5）、touch : 新建一个文件 如 touch index.js 就会在当前目录下新建一个index.js文件。</p>
+<p>6）、rm:  删除一个文件, rm index.js 就会把index.js文件删除。</p>
+<p>7）、mkdir:  新建一个目录,就是新建一个文件夹。</p>
+<p>8）、rm -r :  删除一个文件夹, rm -r src 删除src目录</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf &#x2F; 切勿在Linux中尝试！删除电脑中全部文件！</span><br></pre></td></tr></table></figure>
+
+<p>9）、mv 移动文件, mv index.html src index.html 是我们要移动的文件, src 是目标文件夹,当然, 这样写,必须保证文件和目标文件夹在同一目录下。</p>
+<p>10）、reset 重新初始化终端/清屏。</p>
+<p>11）、clear 清屏。</p>
+<p>12）、history 查看命令历史。</p>
+<p>13）、help 帮助。</p>
+<p>14）、exit 退出。</p>
+<p>15）、#表示注释</p>
+<h2 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h2><h3 id="查看配置-git-config-l"><a href="#查看配置-git-config-l" class="headerlink" title="查看配置 git config -l"></a>查看配置 git config -l</h3><p><img src="https://s1.ax1x.com/2020/10/16/07jUEt.png" alt="07jUEt.png"></p>
+<h3 id="查看不同级别的配置文件："><a href="#查看不同级别的配置文件：" class="headerlink" title="查看不同级别的配置文件："></a>查看不同级别的配置文件：</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#查看系统config</span><br><span class="line">git config --system --list</span><br><span class="line">　　</span><br><span class="line">#查看当前用户（global）配置</span><br><span class="line">git config --global  --list</span><br></pre></td></tr></table></figure>
+
+<h3 id="Git相关的配置文件："><a href="#Git相关的配置文件：" class="headerlink" title="Git相关的配置文件："></a><strong>Git相关的配置文件：</strong></h3><p>1）、Git\etc\gitconfig  ：Git 安装目录下的 gitconfig   –system 系统级</p>
+<p>2）、C:\Users\Administrator\ .gitconfig   只适用于当前登录用户的配置  –global 全局</p>
+<h3 id="设置用户名与邮箱（用户标识，必要）"><a href="#设置用户名与邮箱（用户标识，必要）" class="headerlink" title="设置用户名与邮箱（用户标识，必要）"></a>设置用户名与邮箱（用户标识，必要）</h3><p>当你安装Git后首先要做的事情是设置你的用户名称和e-mail地址。这是非常重要的，因为每次Git提交都会使用该信息。它被永远的嵌入到了你的提交中：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;kuangshen&quot;  #名称</span><br><span class="line">git config --global user.email 24736743@qq.com   #邮箱</span><br></pre></td></tr></table></figure>
+
+<p>只需要做一次这个设置，如果你传递了–global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要–global选项。总之–global为全局配置，不加为某个项目的特定配置。</p>
+<h1 id="Git基本理论（核心）"><a href="#Git基本理论（核心）" class="headerlink" title="Git基本理论（核心）"></a>Git基本理论（核心）</h1><h2 id="git本地有三个工作区域"><a href="#git本地有三个工作区域" class="headerlink" title="git本地有三个工作区域"></a>git本地有三个工作区域</h2><p>Git本地有三个工作区域：工作目录（Working Directory）、暂存区(Stage/Index)、资源库(Repository或Git Directory)。如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。文件在这四个区域之间的转换关系如下：</p>
+<p><a href="https://imgchr.com/i/07vurj"><img src="https://s1.ax1x.com/2020/10/16/07vurj.png" alt="07vurj.png"></a></p>
+<ul>
+<li>Workspace：工作区，就是你平时存放项目代码的地方</li>
+<li>Index / Stage：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息</li>
+<li>Repository：仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</li>
+<li>Remote：远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</li>
+</ul>
+<p>本地的三个区域确切的说应该是git仓库中HEAD指向的版本：</p>
+<p><img src="https://s1.ax1x.com/2020/10/16/07vri6.png" alt="07vri6.png"></p>
+<ul>
+<li>Directory：使用Git管理的一个目录，也就是一个仓库，包含我们的工作空间和Git的管理空间。</li>
+<li>WorkSpace：需要通过Git进行版本控制的目录和文件，这些目录和文件组成了工作空间。</li>
+<li>.git：存放Git管理信息的目录，初始化仓库的时候自动创建。</li>
+<li>Index/Stage：暂存区，或者叫待提交更新区，在提交进入repo之前，我们可以把所有的更新放在暂存区。</li>
+<li>Local Repo：本地仓库，一个存放在本地的版本库；HEAD会只是当前的开发分支（branch）。</li>
+<li>Stash：隐藏，是一个工作状态保存栈，用于保存/恢复WorkSpace中的临时状态。</li>
+</ul>
+<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>git的工作流程一般是这样的：</p>
+<p>１、在工作目录中添加、修改文件；</p>
+<p>２、将需要进行版本管理的文件放入暂存区域；</p>
+<p>３、将暂存区域的文件提交到git仓库。</p>
+<p>因此，git管理的文件有三种状态：已修改（modified）,已暂存（staged）,已提交(committed)</p>
+<p><img src="https://s1.ax1x.com/2020/10/16/07v6zD.png" alt="07v6zD.png"></p>
+<h1 id="Git项目搭建"><a href="#Git项目搭建" class="headerlink" title="Git项目搭建"></a>Git项目搭建</h1><h2 id="创建工作目录与常用指令"><a href="#创建工作目录与常用指令" class="headerlink" title="创建工作目录与常用指令"></a>创建工作目录与常用指令</h2><p>工作目录（WorkSpace)一般就是你希望Git帮助你管理的文件夹，可以是你项目的目录，也可以是一个空目录，建议不要有中文。</p>
+<p>日常使用只要记住下图6个命令：</p>
+<p><img src="https://s1.ax1x.com/2020/10/16/0Hpbhq.png" alt="0Hpbhq.png"></p>
+<h2 id="本地仓库搭建"><a href="#本地仓库搭建" class="headerlink" title="本地仓库搭建"></a>本地仓库搭建</h2><p>创建本地仓库的方法有两种：一种是创建全新的仓库，另一种是克隆远程仓库。</p>
+<h3 id="创建全新的仓库"><a href="#创建全新的仓库" class="headerlink" title="创建全新的仓库"></a>创建全新的仓库</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># 在当前目录新建一个Git代码库</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+
+<p>执行后可以看到，仅仅在项目目录多出了一个.git目录，关于版本等的所有信息都在这个目录里面。</p>
+<h3 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># 克隆一个项目和它的整个代码历史(版本信息)</span><br><span class="line">$ git clone [url]  # https://gitee.com/kuangstudy/openclass.git</span><br></pre></td></tr></table></figure>
+
+<p>是将远程服务器上的仓库完全镜像一份至本地！</p>
+<h1 id="Git文件操作"><a href="#Git文件操作" class="headerlink" title="Git文件操作"></a>Git文件操作</h1><h2 id="文件的四种状态"><a href="#文件的四种状态" class="headerlink" title="文件的四种状态"></a>文件的四种状态</h2><p>版本控制就是对文件的版本控制，要对文件进行修改、提交等操作，首先要知道文件当前在什么状态，不然可能会提交了现在还不想提交的文件，或者要提交的文件没提交上。</p>
+<ul>
+<li>Untracked: 未跟踪, 此文件在文件夹中, 但并没有加入到git库, 不参与版本控制. 通过<strong>git add</strong> 状态变为<strong>Staged</strong>.</li>
+<li>Unmodify: 文件已经入库, 未修改, 即版本库中的文件快照内容与文件夹中完全一致. 这种类型的文件有两种去处, 如果它被修改, 而变为Modified. 如果使用git rm移出版本库, 则成为Untracked文件</li>
+<li>Modified: 文件已修改, 仅仅是修改, 并没有进行其他的操作. 这个文件也有两个去处, 通过git add可进入暂存staged状态, 使用git checkout 则丢弃修改过, 返回到unmodify状态, 这个git checkout即从库中取出文件, 覆盖当前修改 !</li>
+<li>Staged: 暂存状态. 执行git commit则将修改同步到库中, 这时库中的文件和本地文件又变为一致, 文件为Unmodify状态. 执行git reset HEAD filename取消暂存, 文件状态为Modified</li>
+</ul>
+<h2 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h2><p>上面说文件有4种状态，通过如下命令可以查看到文件的状态：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#查看指定文件状态</span><br><span class="line">git status [filename]</span><br><span class="line"></span><br><span class="line">#查看所有文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"># git add .                  添加所有文件到暂存区</span><br><span class="line"># git commit -m &quot;消息内容&quot;    提交暂存区中的内容到本地仓库 -m 提交信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>有些时候我们不想把某些文件纳入版本控制中，比如数据库文件，临时文件，设计文件等</p>
+<p>在主目录下建立”.gitignore”文件，此文件有如下规则：</p>
+<ol>
+<li><p>忽略文件中的空行或以井号（#）开始的行将会被忽略。</p>
+</li>
+<li><p>可以使用Linux通配符。例如：星号（*）代表任意多个字符，问号（？）代表一个字符，方括号（[abc]）代表可选字符范围，大括号（{string1,string2,…}）代表可选的字符串等。</p>
+</li>
+<li><p>如果名称的最前面有一个感叹号（!），表示例外规则，将不被忽略。</p>
+</li>
+<li><p>如果名称的最前面是一个路径分隔符（/），表示要忽略的文件在此目录下，而子目录中的文件不忽略。</p>
+</li>
+<li><p>如果名称的最后面是一个路径分隔符（/），表示要忽略的是此目录下该名称的子目录，而非文件（默认文件或目录都忽略）。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#为注释</span><br><span class="line">*.txt        #忽略所有 .txt结尾的文件,这样的话上传就不会被选中！</span><br><span class="line">!lib.txt     #但lib.txt除外</span><br><span class="line">/temp        #仅忽略项目根目录下的TODO文件,不包括其它目录temp</span><br><span class="line">build/       #忽略build/目录下的所有文件</span><br><span class="line">doc/*.txt    #会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="码云的使用"><a href="#码云的使用" class="headerlink" title="码云的使用"></a>码云的使用</h1><p><a href="https://www.bilibili.com/video/BV1FE411P7B3?p=10">参考视频</a></p>
+<h1 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h1>]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>版本控制</tag>
       </tags>
   </entry>
   <entry>
@@ -175,6 +343,35 @@
       </tags>
   </entry>
   <entry>
+    <title>oracle11g创建用户并指定表空间</title>
+    <url>/blog/2020/10/19/oracle%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8C%87%E5%AE%9A%E8%A1%A8%E7%A9%BA%E9%97%B4/</url>
+    <content><![CDATA[<p>oracle创建表空间并赋值给用户</p>
+<a id="more"></a>
+
+
+
+
+
+<h1 id="创建表空间"><a href="#创建表空间" class="headerlink" title="创建表空间"></a>创建表空间</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> eprk</span><br><span class="line"><span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">&#x27;D:\oracle\oradata\orcl\eprk.dbf&#x27;</span><span class="comment">#表空间的路径</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">100</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span></span><br><span class="line"><span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="number">20480</span>m <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建qh2用户并指定表空间"><a href="#创建qh2用户并指定表空间" class="headerlink" title="创建qh2用户并指定表空间"></a>创建qh2用户并指定表空间</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> qh2 <span class="keyword">identified</span> <span class="keyword">by</span> <span class="number">123456</span></span><br><span class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> eprk</span><br><span class="line"><span class="keyword">temporary</span> <span class="keyword">tablespace</span> temp profile <span class="keyword">default</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="给qh2用户授予权限"><a href="#给qh2用户授予权限" class="headerlink" title="给qh2用户授予权限"></a>给qh2用户授予权限</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span> <span class="keyword">to</span> qh2;</span><br><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> qh2;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="远程导入dmp文件"><a href="#远程导入dmp文件" class="headerlink" title="远程导入dmp文件"></a>远程导入dmp文件</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">cd /d D:\oraclexe\app\oracle\product\11.2.0\server\bin</span><br><span class="line"></span><br><span class="line">imp qh2/123456@192.168.0.1:1521/orcl file=G:\global.dmp full=y</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>oracle</tag>
+        <tag>工作日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>typora设置自动编号</title>
     <url>/blog/2020/10/14/typora%E8%AE%BE%E7%BD%AE%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/</url>
     <content><![CDATA[<p>设置主题文件</p>
@@ -193,6 +390,56 @@
       <tags>
         <tag>工作日志</tag>
         <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试题</title>
+    <url>/blog/2020/10/20/images/%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
+    <content><![CDATA[<p>面试题总结</p>
+<a id="more"></a>
+
+<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="面向对象和面向过程的区别"><a href="#面向对象和面向过程的区别" class="headerlink" title="面向对象和面向过程的区别"></a>面向对象和面向过程的区别</h2><p><strong>首先是面试过程：</strong></p>
+<p><strong>优点</strong>：性能比面向对象高，因为面向对象中类调用时需要实例化，实例化的过程比较耗费资源，开销比较大。</p>
+<p><strong>缺点</strong>： 没有面向对象易维护、易复用、易扩展 </p>
+<p><strong>然后就是面试对象</strong></p>
+<p><strong>优点：</strong> 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特 性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护 </p>
+<p><strong>缺点</strong>： 性能比面向过程低 </p>
+<h2 id="Java-语言有哪些特点"><a href="#Java-语言有哪些特点" class="headerlink" title="Java 语言有哪些特点"></a>Java 语言有哪些特点</h2><ul>
+<li>简单易学； </li>
+<li>面向对象（封装，继承，多态）； </li>
+<li>平台无关性（ Java 虚拟机实现平台无关性）； </li>
+<li>可靠性； </li>
+<li>安全性；</li>
+<li>支持多线程（ C++ 语言没有内置的多线程机制，因此必须调用操作系 统的多线程功能来进行多线程程序设计，而 Java 语言却提供了多线程 支持）； </li>
+<li>支持网络编程并且很方便（ Java 语言诞生本身就是为简化网络编程设 计的，因此 Java 语言不仅支持网络编程而且很方便）； </li>
+<li>编译与解释并存</li>
+</ul>
+<h2 id="关于-JVM-JDK-和-JRE-最详细通俗的解答"><a href="#关于-JVM-JDK-和-JRE-最详细通俗的解答" class="headerlink" title="关于 JVM JDK 和 JRE 最详细通俗的解答"></a>关于 JVM JDK 和 JRE 最详细通俗的解答</h2><p><strong>JVM</strong><br>Java虚拟机（JVM）是运行 Java 字节码的虚拟机。JVM有针对不同系统的特 定实现（Windows，Linux，macOS），目的是使用相同的字节码（在 Java 中，JVM可以理解的代码就叫做字节码（即扩展名为 .class 的文 件）），它们都会给 出相同的结果。字节码和不同系统的 JVM 实现是 Java 语言“一次编 译，随处可以运行”的关键所在。 </p>
+<p><strong>JDK 和 JRE</strong> </p>
+<p>JDK是Java Development Kit，它是功能齐全的Java SDK。它拥有JRE所拥有 的一切，还有编译器（javac）和工具（如javadoc和jdb）。它能够创建和编 译程序。 </p>
+<p>JRE 是 Java运行时环境。它是运行已编译 Java 程序所需的所有内容的集合， 包括 Java虚拟机（JVM），Java类库，java命令和其他的一些基础构件。但 是，它不能用于创建新程序。 </p>
+<h2 id="Oracle-JDK-和-OpenJDK-的对比"><a href="#Oracle-JDK-和-OpenJDK-的对比" class="headerlink" title="Oracle JDK 和 OpenJDK 的对比"></a>Oracle JDK 和 OpenJDK 的对比</h2><ul>
+<li>Oracle JDK版本将每三年发布一次，而OpenJDK版本每三个月发布一 次； </li>
+<li>OpenJDK 是一个参考模型并且是完全开源的，而Oracle JDK是 OpenJDK的一个实现，并不是完全开源的； </li>
+<li>Oracle JDK 比 OpenJDK 更稳定。OpenJDK和Oracle JDK的代码几乎 相同，但Oracle JDK有更多的类和一些错误修复。</li>
+<li>顶级公司正在使用Oracle JDK，例如Android Studio，Minecraft和 IntelliJ IDEA开发工具，其中Open JDK不太受欢迎； </li>
+<li>在响应性和JVM性能方面，Oracle JDK与OpenJDK相比提供了更好的 性能； </li>
+<li>Oracle JDK不会为即将发布的版本提供长期支持，用户每次都必须通过 更新到最新版本获得支持来获取最新版本； </li>
+<li>Oracle JDK根据二进制代码许可协议获得许可，而OpenJDK根据GPL v2许可获得许可。 </li>
+</ul>
+<h2 id="Java和C-的区别"><a href="#Java和C-的区别" class="headerlink" title="Java和C++的区别"></a>Java和C++的区别</h2><ul>
+<li>都是面向对象的语言，都支持封装、继承和多态 </li>
+<li>Java 不提供指针来直接访问内存，程序内存更加安全 </li>
+<li>java 的类是单继承的，C++ 支持多重继承；虽然 Java 的类不可以多 继承，但是接口可以多继承。 </li>
+<li>Java 有自动内存管理机制，不需要程序员手动释放无用内存 </li>
+</ul>
+<h2 id="什么是-Java-程序的主类-应用程序和小程序的主-类有何不同"><a href="#什么是-Java-程序的主类-应用程序和小程序的主-类有何不同" class="headerlink" title="什么是 Java 程序的主类 应用程序和小程序的主 类有何不同"></a>什么是 Java 程序的主类 应用程序和小程序的主 类有何不同</h2><p>一个程序中可以有多个类，但只能有一个类是主类。在 Java 应用程序中，这 个主类是指包含 main（）方法的类。而在 Java 小程序中，这个主类是一个继 承自系统类 JApplet 或 Applet 的子类。应用程序的主类不一定要求是 public 类，但小程序的主类要求必须是 public 类。主类是 Java 程序执行的入口点。</p>
+]]></content>
+      <categories>
+        <category>面试题</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
       </tags>
   </entry>
   <entry>
@@ -1537,203 +1784,6 @@
         <tag>java</tag>
         <tag>ssm框架</tag>
         <tag>项目实战</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git学习笔记</title>
-    <url>/blog/2020/10/15/git%E5%85%A5%E9%97%A8%E5%88%B0%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>通过观看狂神讲师的视频所做的笔记，以便后来自己复习：<a href="https://www.bilibili.com/video/BV1FE411P7B3?p=1">地址</a></p>
-<a id="more"></a>
-
-<h1 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h1><blockquote>
-<p>版本控制（Revision control）是一种在开发的过程中用于管理我们对文件、目录或工程等内容的修改历史，方便查看更改历史记录，备份以便恢复以前的版本的软件工程技术。</p>
-</blockquote>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul>
-<li>实现跨区域多人协同开发</li>
-<li>追踪和记载一个或者多个文件的历史记录</li>
-<li>组织和保护你的源代码和文档</li>
-<li>统计工作量</li>
-<li>并行开发、提高开发效率</li>
-<li>跟踪记录整个软件的开发过程</li>
-<li>减轻开发人员的负担，节省时间，同时降低人为错误</li>
-</ul>
-<p>简单说就是用于管理多人协同开发项目的技术。</p>
-<p>没有进行版本控制或者版本控制本身缺乏正确的流程管理，在软件开发过程中将会引入很多问题，如软件代码的一致性、软件内容的冗余、软件过程的事物性、软件开发过程中的并发性、软件源代码的安全性，以及软件的整合等问题。</p>
-<p>无论是工作还是学习，或者是自己做笔记，都经历过这样一个阶段！我们就迫切需要一个版本控制工具！</p>
-<h2 id="常见的版本控制"><a href="#常见的版本控制" class="headerlink" title="常见的版本控制"></a>常见的版本控制</h2><ul>
-<li><strong>Git</strong></li>
-<li><strong>SVN</strong>（Subversion）</li>
-<li><strong>CVS</strong>（Concurrent Versions System）</li>
-<li><strong>VSS</strong>（Micorosoft Visual SourceSafe）</li>
-<li><strong>TFS</strong>（Team Foundation Server）</li>
-<li>Visual Studio Online</li>
-</ul>
-<p>现在影响力最大且使用最广泛的是Git与SVN</p>
-<h2 id="版本控制分类"><a href="#版本控制分类" class="headerlink" title="版本控制分类"></a>版本控制分类</h2><h3 id="本地版本控制"><a href="#本地版本控制" class="headerlink" title="本地版本控制"></a>本地版本控制</h3><p>记录文件每次的更新，可以对每个版本做一个快照，或是记录补丁文件，适合个人用，如RCS。</p>
-<p><img src="https://s1.ax1x.com/2020/10/15/07CAAA.png" alt="07CAAA.png"></p>
-<h3 id="集中版本控制-SVN"><a href="#集中版本控制-SVN" class="headerlink" title="集中版本控制  SVN"></a>集中版本控制  SVN</h3><p>所有的版本数据都保存在服务器上，协同开发者从服务器上同步更新或上传自己的修改</p>
-<p><img src="https://s1.ax1x.com/2020/10/15/07CMng.png" alt="07CMng.png"></p>
-<p><strong>缺点：</strong>所有的版本数据都存在服务器上，用户的本地只有自己以前所同步的版本，如果不连网的话，用户就看不到历史版本，也无法切换版本验证问题，或在不同分支工作。而且，所有数据都保存在单一的服务器上，有很大的风险这个服务器会损坏，这样就会丢失所有的数据，当然可以定期备份。代表产品：SVN、CVS、VSS</p>
-<h3 id="分布式版本控制-Git"><a href="#分布式版本控制-Git" class="headerlink" title="分布式版本控制 Git"></a>分布式版本控制 Git</h3><p>所有版本信息仓库全部同步到本地的每个用户，这样就可以在本地查看所有版本历史，可以离线在本地提交，只需在连网时push到相应的服务器或其他用户那里。由于每个用户那里保存的都是所有的版本数据，只要有一个用户的设备没有问题就可以恢复所有的数据，但这增加了本地存储空间的占用。</p>
-<p><img src="https://s1.ax1x.com/2020/10/15/07CrNR.png" alt="07CrNR.png"></p>
-<h2 id="Git和SVN的主要区别"><a href="#Git和SVN的主要区别" class="headerlink" title="Git和SVN的主要区别"></a>Git和SVN的主要区别</h2><p>SVN是集中式版本控制系统，版本库是集中放在中央服务器的，而工作的时候，用的都是自己的电脑，所以首先要从中央服务器得到最新的版本，然后工作，完成工作后，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，对网络带宽要求较高。</p>
-<p>Git是分布式版本控制系统，没有中央服务器，每个人的电脑就是一个完整的版本库，工作的时候不需要联网了，因为版本都在自己电脑上。协同的方法是这样的：比如说自己在电脑上改了文件A，其他人也在电脑上改了文件A，这时，你们两之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。Git可以直接看到更新了哪些代码和文件！</p>
-<p><strong>Git是目前世界上最先进的分布式版本控制系统。</strong></p>
-<h1 id="Git历史"><a href="#Git历史" class="headerlink" title="Git历史"></a>Git历史</h1><p>同生活中的许多伟大事物一样，Git 诞生于一个极富纷争大举创新的年代。</p>
-<p>Linux 内核开源项目有着为数众广的参与者。绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上(1991－2002年间)。到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。</p>
-<p>Linux社区中存在很多的大佬！破解研究 BitKeeper ！</p>
-<p>到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。这就迫使 Linux 开源社区(特别是 Linux 的缔造者 Linus Torvalds)基于使用 BitKeeper 时的经验教训，开发出自己的版本系统。（2周左右！） 也就是后来的 Git！</p>
-<p><strong>Git是目前世界上最先进的分布式版本控制系统。</strong></p>
-<p>Git是免费、开源的，最初Git是为辅助 Linux 内核开发的，来替代 BitKeeper！</p>
-<p>Linux和Git之父李纳斯·托沃兹（Linus Benedic Torvalds）1969、芬兰</p>
-<h1 id="git环境配置"><a href="#git环境配置" class="headerlink" title="git环境配置"></a>git环境配置</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://npm.taobao.org/mirrors/git-for-windows/">淘宝镜像网址</a></p>
-<p><a href="https://www.bilibili.com/video/BV1FE411P7B3?p=4">安装教程</a></p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p><strong>Git Bash：</strong>Unix与Linux风格的命令行，使用最多，推荐最多</p>
-<p><strong>Git CMD：</strong>Windows风格的命令行</p>
-<p><strong>Git GUI</strong>：图形界面的Git，不建议初学者使用，尽量先熟悉常用命令</p>
-<h2 id="基本linux命令"><a href="#基本linux命令" class="headerlink" title="基本linux命令"></a>基本linux命令</h2><p>1）、cd : 改变目录。</p>
-<p>2）、cd . . 回退到上一个目录，直接cd进入默认目录</p>
-<p>3）、pwd : 显示当前所在的目录路径。</p>
-<p>4）、ls(ll):  都是列出当前目录中的所有文件，只不过ll(两个ll)列出的内容更为详细。</p>
-<p>5）、touch : 新建一个文件 如 touch index.js 就会在当前目录下新建一个index.js文件。</p>
-<p>6）、rm:  删除一个文件, rm index.js 就会把index.js文件删除。</p>
-<p>7）、mkdir:  新建一个目录,就是新建一个文件夹。</p>
-<p>8）、rm -r :  删除一个文件夹, rm -r src 删除src目录</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -rf &#x2F; 切勿在Linux中尝试！删除电脑中全部文件！</span><br></pre></td></tr></table></figure>
-
-<p>9）、mv 移动文件, mv index.html src index.html 是我们要移动的文件, src 是目标文件夹,当然, 这样写,必须保证文件和目标文件夹在同一目录下。</p>
-<p>10）、reset 重新初始化终端/清屏。</p>
-<p>11）、clear 清屏。</p>
-<p>12）、history 查看命令历史。</p>
-<p>13）、help 帮助。</p>
-<p>14）、exit 退出。</p>
-<p>15）、#表示注释</p>
-<h2 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h2><h3 id="查看配置-git-config-l"><a href="#查看配置-git-config-l" class="headerlink" title="查看配置 git config -l"></a>查看配置 git config -l</h3><p><img src="https://s1.ax1x.com/2020/10/16/07jUEt.png" alt="07jUEt.png"></p>
-<h3 id="查看不同级别的配置文件："><a href="#查看不同级别的配置文件：" class="headerlink" title="查看不同级别的配置文件："></a>查看不同级别的配置文件：</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#查看系统config</span><br><span class="line">git config --system --list</span><br><span class="line">　　</span><br><span class="line">#查看当前用户（global）配置</span><br><span class="line">git config --global  --list</span><br></pre></td></tr></table></figure>
-
-<h3 id="Git相关的配置文件："><a href="#Git相关的配置文件：" class="headerlink" title="Git相关的配置文件："></a><strong>Git相关的配置文件：</strong></h3><p>1）、Git\etc\gitconfig  ：Git 安装目录下的 gitconfig   –system 系统级</p>
-<p>2）、C:\Users\Administrator\ .gitconfig   只适用于当前登录用户的配置  –global 全局</p>
-<h3 id="设置用户名与邮箱（用户标识，必要）"><a href="#设置用户名与邮箱（用户标识，必要）" class="headerlink" title="设置用户名与邮箱（用户标识，必要）"></a>设置用户名与邮箱（用户标识，必要）</h3><p>当你安装Git后首先要做的事情是设置你的用户名称和e-mail地址。这是非常重要的，因为每次Git提交都会使用该信息。它被永远的嵌入到了你的提交中：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">git config --global user.name &quot;kuangshen&quot;  #名称</span><br><span class="line">git config --global user.email 24736743@qq.com   #邮箱</span><br></pre></td></tr></table></figure>
-
-<p>只需要做一次这个设置，如果你传递了–global 选项，因为Git将总是会使用该信息来处理你在系统中所做的一切操作。如果你希望在一个特定的项目中使用不同的名称或e-mail地址，你可以在该项目中运行该命令而不要–global选项。总之–global为全局配置，不加为某个项目的特定配置。</p>
-<h1 id="Git基本理论（核心）"><a href="#Git基本理论（核心）" class="headerlink" title="Git基本理论（核心）"></a>Git基本理论（核心）</h1><h2 id="git本地有三个工作区域"><a href="#git本地有三个工作区域" class="headerlink" title="git本地有三个工作区域"></a>git本地有三个工作区域</h2><p>Git本地有三个工作区域：工作目录（Working Directory）、暂存区(Stage/Index)、资源库(Repository或Git Directory)。如果在加上远程的git仓库(Remote Directory)就可以分为四个工作区域。文件在这四个区域之间的转换关系如下：</p>
-<p><a href="https://imgchr.com/i/07vurj"><img src="https://s1.ax1x.com/2020/10/16/07vurj.png" alt="07vurj.png"></a></p>
-<ul>
-<li>Workspace：工作区，就是你平时存放项目代码的地方</li>
-<li>Index / Stage：暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息</li>
-<li>Repository：仓库区（或本地仓库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</li>
-<li>Remote：远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</li>
-</ul>
-<p>本地的三个区域确切的说应该是git仓库中HEAD指向的版本：</p>
-<p><img src="https://s1.ax1x.com/2020/10/16/07vri6.png" alt="07vri6.png"></p>
-<ul>
-<li>Directory：使用Git管理的一个目录，也就是一个仓库，包含我们的工作空间和Git的管理空间。</li>
-<li>WorkSpace：需要通过Git进行版本控制的目录和文件，这些目录和文件组成了工作空间。</li>
-<li>.git：存放Git管理信息的目录，初始化仓库的时候自动创建。</li>
-<li>Index/Stage：暂存区，或者叫待提交更新区，在提交进入repo之前，我们可以把所有的更新放在暂存区。</li>
-<li>Local Repo：本地仓库，一个存放在本地的版本库；HEAD会只是当前的开发分支（branch）。</li>
-<li>Stash：隐藏，是一个工作状态保存栈，用于保存/恢复WorkSpace中的临时状态。</li>
-</ul>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p>git的工作流程一般是这样的：</p>
-<p>１、在工作目录中添加、修改文件；</p>
-<p>２、将需要进行版本管理的文件放入暂存区域；</p>
-<p>３、将暂存区域的文件提交到git仓库。</p>
-<p>因此，git管理的文件有三种状态：已修改（modified）,已暂存（staged）,已提交(committed)</p>
-<p><img src="https://s1.ax1x.com/2020/10/16/07v6zD.png" alt="07v6zD.png"></p>
-<h1 id="Git项目搭建"><a href="#Git项目搭建" class="headerlink" title="Git项目搭建"></a>Git项目搭建</h1><h2 id="创建工作目录与常用指令"><a href="#创建工作目录与常用指令" class="headerlink" title="创建工作目录与常用指令"></a>创建工作目录与常用指令</h2><p>工作目录（WorkSpace)一般就是你希望Git帮助你管理的文件夹，可以是你项目的目录，也可以是一个空目录，建议不要有中文。</p>
-<p>日常使用只要记住下图6个命令：</p>
-<p><img src="https://s1.ax1x.com/2020/10/16/0Hpbhq.png" alt="0Hpbhq.png"></p>
-<h2 id="本地仓库搭建"><a href="#本地仓库搭建" class="headerlink" title="本地仓库搭建"></a>本地仓库搭建</h2><p>创建本地仓库的方法有两种：一种是创建全新的仓库，另一种是克隆远程仓库。</p>
-<h3 id="创建全新的仓库"><a href="#创建全新的仓库" class="headerlink" title="创建全新的仓库"></a>创建全新的仓库</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># 在当前目录新建一个Git代码库</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure>
-
-<p>执行后可以看到，仅仅在项目目录多出了一个.git目录，关于版本等的所有信息都在这个目录里面。</p>
-<h3 id="克隆远程仓库"><a href="#克隆远程仓库" class="headerlink" title="克隆远程仓库"></a>克隆远程仓库</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"># 克隆一个项目和它的整个代码历史(版本信息)</span><br><span class="line">$ git clone [url]  # https://gitee.com/kuangstudy/openclass.git</span><br></pre></td></tr></table></figure>
-
-<p>是将远程服务器上的仓库完全镜像一份至本地！</p>
-<h1 id="Git文件操作"><a href="#Git文件操作" class="headerlink" title="Git文件操作"></a>Git文件操作</h1><h2 id="文件的四种状态"><a href="#文件的四种状态" class="headerlink" title="文件的四种状态"></a>文件的四种状态</h2><p>版本控制就是对文件的版本控制，要对文件进行修改、提交等操作，首先要知道文件当前在什么状态，不然可能会提交了现在还不想提交的文件，或者要提交的文件没提交上。</p>
-<ul>
-<li>Untracked: 未跟踪, 此文件在文件夹中, 但并没有加入到git库, 不参与版本控制. 通过<strong>git add</strong> 状态变为<strong>Staged</strong>.</li>
-<li>Unmodify: 文件已经入库, 未修改, 即版本库中的文件快照内容与文件夹中完全一致. 这种类型的文件有两种去处, 如果它被修改, 而变为Modified. 如果使用git rm移出版本库, 则成为Untracked文件</li>
-<li>Modified: 文件已修改, 仅仅是修改, 并没有进行其他的操作. 这个文件也有两个去处, 通过git add可进入暂存staged状态, 使用git checkout 则丢弃修改过, 返回到unmodify状态, 这个git checkout即从库中取出文件, 覆盖当前修改 !</li>
-<li>Staged: 暂存状态. 执行git commit则将修改同步到库中, 这时库中的文件和本地文件又变为一致, 文件为Unmodify状态. 执行git reset HEAD filename取消暂存, 文件状态为Modified</li>
-</ul>
-<h2 id="查看文件状态"><a href="#查看文件状态" class="headerlink" title="查看文件状态"></a>查看文件状态</h2><p>上面说文件有4种状态，通过如下命令可以查看到文件的状态：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#查看指定文件状态</span><br><span class="line">git status [filename]</span><br><span class="line"></span><br><span class="line">#查看所有文件状态</span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"># git add .                  添加所有文件到暂存区</span><br><span class="line"># git commit -m &quot;消息内容&quot;    提交暂存区中的内容到本地仓库 -m 提交信息</span><br></pre></td></tr></table></figure>
-
-<h2 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h2><p>有些时候我们不想把某些文件纳入版本控制中，比如数据库文件，临时文件，设计文件等</p>
-<p>在主目录下建立”.gitignore”文件，此文件有如下规则：</p>
-<ol>
-<li><p>忽略文件中的空行或以井号（#）开始的行将会被忽略。</p>
-</li>
-<li><p>可以使用Linux通配符。例如：星号（*）代表任意多个字符，问号（？）代表一个字符，方括号（[abc]）代表可选字符范围，大括号（{string1,string2,…}）代表可选的字符串等。</p>
-</li>
-<li><p>如果名称的最前面有一个感叹号（!），表示例外规则，将不被忽略。</p>
-</li>
-<li><p>如果名称的最前面是一个路径分隔符（/），表示要忽略的文件在此目录下，而子目录中的文件不忽略。</p>
-</li>
-<li><p>如果名称的最后面是一个路径分隔符（/），表示要忽略的是此目录下该名称的子目录，而非文件（默认文件或目录都忽略）。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">#为注释</span><br><span class="line">*.txt        #忽略所有 .txt结尾的文件,这样的话上传就不会被选中！</span><br><span class="line">!lib.txt     #但lib.txt除外</span><br><span class="line">/temp        #仅忽略项目根目录下的TODO文件,不包括其它目录temp</span><br><span class="line">build/       #忽略build/目录下的所有文件</span><br><span class="line">doc/*.txt    #会忽略 doc/notes.txt 但不包括 doc/server/arch.txt</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="码云的使用"><a href="#码云的使用" class="headerlink" title="码云的使用"></a>码云的使用</h1><p><a href="https://www.bilibili.com/video/BV1FE411P7B3?p=10">参考视频</a></p>
-<h1 id="git分支"><a href="#git分支" class="headerlink" title="git分支"></a>git分支</h1>]]></content>
-      <categories>
-        <category>git</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>版本控制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oracle11g删除某一用户下所有表</title>
-    <url>/blog/2020/10/19/Oracle%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7%E4%B8%8B%E6%89%80%E6%9C%89%E8%A1%A8/</url>
-    <content><![CDATA[<p>oracle11g删除数据</p>
-<a id="more"></a>
-
-<p>在命令窗口执行</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="string">&#x27;drop  table &#x27;</span>|| table_name || <span class="string">&#x27;;&#x27;</span> <span class="keyword">FROM</span> USER_TABLES <span class="keyword">ORDER</span> <span class="keyword">BY</span> TABLE_NAME;</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgchr.com/i/0xrL3n"><img src="https://s1.ax1x.com/2020/10/19/0xrL3n.png" alt="0xrL3n.png"></a></p>
-<p>然后将查询的结果复制之后重新执行</p>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>oracle</tag>
-        <tag>工作日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oracle11g创建用户并指定表空间</title>
-    <url>/blog/2020/10/19/oracle%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%B9%B6%E6%8C%87%E5%AE%9A%E8%A1%A8%E7%A9%BA%E9%97%B4/</url>
-    <content><![CDATA[<p>oracle创建表空间并赋值给用户</p>
-<a id="more"></a>
-
-
-
-
-
-<h1 id="创建表空间"><a href="#创建表空间" class="headerlink" title="创建表空间"></a>创建表空间</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> eprk</span><br><span class="line"><span class="keyword">logging</span> <span class="keyword">datafile</span> <span class="string">&#x27;D:\oracle\oradata\orcl\eprk.dbf&#x27;</span><span class="comment">#表空间的路径</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">100</span>m <span class="keyword">autoextend</span> <span class="keyword">on</span></span><br><span class="line"><span class="keyword">next</span> <span class="number">50</span>m <span class="keyword">maxsize</span> <span class="number">20480</span>m <span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="创建qh2用户并指定表空间"><a href="#创建qh2用户并指定表空间" class="headerlink" title="创建qh2用户并指定表空间"></a>创建qh2用户并指定表空间</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> qh2 <span class="keyword">identified</span> <span class="keyword">by</span> <span class="number">123456</span></span><br><span class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> eprk</span><br><span class="line"><span class="keyword">temporary</span> <span class="keyword">tablespace</span> temp profile <span class="keyword">default</span>;</span><br></pre></td></tr></table></figure>
-
-<h1 id="给qh2用户授予权限"><a href="#给qh2用户授予权限" class="headerlink" title="给qh2用户授予权限"></a>给qh2用户授予权限</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">connect</span>,<span class="keyword">resource</span> <span class="keyword">to</span> qh2;</span><br><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> qh2;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="远程导入dmp文件"><a href="#远程导入dmp文件" class="headerlink" title="远程导入dmp文件"></a>远程导入dmp文件</h1><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">cd /d D:\oraclexe\app\oracle\product\11.2.0\server\bin</span><br><span class="line"></span><br><span class="line">imp qh2/123456@192.168.0.1:1521/orcl file=G:\global.dmp full=y</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>oracle</tag>
-        <tag>工作日志</tag>
       </tags>
   </entry>
 </search>
