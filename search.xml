@@ -569,7 +569,7 @@
     <title>SSM框架之汽车租赁系统</title>
     <url>/blog/2020/10/06/SSM%E6%A1%86%E6%9E%B6%E4%B9%8B%E6%B1%BD%E8%BD%A6%E7%A7%9F%E8%B5%81%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p>涉及技术：前端：layui</p>
-<p>后端框架：spring + springMVC +Mybatis</p>
+<p>后端框架：spring + springMVC +Mybatis+ maven</p>
 <p>RBAC权限管理，Echarts图形展示</p>
 <p><a href="https://gitee.com/SHUAI_code/Car.git">项目github地址</a></p>
 <a id="more"></a>
