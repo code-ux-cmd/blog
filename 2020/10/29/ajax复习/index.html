@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+  <link rel="manifest" href="/blog/images/manifest.json">
+  <meta name="msapplication-config" content="/blog/images/browserconfig.xml">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="AJAX是实现页面局部刷新的一种技术。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax复习">
+<meta property="og:url" content="https://gitee.com/SHUAI_code/blog.git/2020/10/29/ajax%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="哼着我的小调调">
+<meta property="og:description" content="AJAX是实现页面局部刷新的一种技术。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-29T10:09:02.311Z">
+<meta property="article:modified_time" content="2020-10-29T11:15:11.437Z">
+<meta property="article:author" content="白小纯">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="ajax">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/SHUAI_code/blog.git/2020/10/29/ajax%E5%A4%8D%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ajax复习 | 哼着我的小调调</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哼着我的小调调</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人学习与分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/SHUAI_code/blog.git/2020/10/29/ajax%E5%A4%8D%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+      <meta itemprop="name" content="白小纯">
+      <meta itemprop="description" content="不忘初心，方得始终">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哼着我的小调调">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ajax复习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-29 18:09:02 / 修改时间：19:15:11" itemprop="dateCreated datePublished" datetime="2020-10-29T18:09:02+08:00">2020-10-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>AJAX是实现页面局部刷新的一种技术。</p>
+<a id="more"></a>
+
+<h1 id="AJAX和JQuery学习"><a href="#AJAX和JQuery学习" class="headerlink" title="AJAX和JQuery学习"></a>AJAX和JQuery学习</h1><h2 id="AJAX学习"><a href="#AJAX学习" class="headerlink" title="AJAX学习"></a>AJAX学习</h2><h3 id="异步请求对象"><a href="#异步请求对象" class="headerlink" title="异步请求对象"></a>异步请求对象</h3><p>在局部刷新，需要创建一个对象，代替浏览器发起请求的行为，这个对象存在内存中。<br> 代替浏览器发起请求并接收响应数据。这个对象叫做异步请求对象。 </p>
+<p>全局刷新是同步行为， 局部刷新是异步行为[浏览器数据没有全部更新]  这个异步对象用于在后台与服务器交换数据。<code>XMLHttpRequest </code>就是我们说的异步对象</p>
+<p><strong><code>XMLHttpRequest </code> 对象作用：</strong></p>
+<ul>
+<li>在不重新加载页面的情况下更新网页 </li>
+<li>在页面已加载后向服务器请求数据 </li>
+<li>在页面已加载后从服务器接收数据 </li>
+</ul>
+<p>AJAX 中的核心对象就是 XMLHttpRequest </p>
+<h3 id="AJAX简介"><a href="#AJAX简介" class="headerlink" title="AJAX简介"></a>AJAX简介</h3><p><code>AJAX</code> = <code>Asynchronous JavaScript and XML</code>（异步的 <code>JavaScript </code>和 <code>XML</code>）。 </p>
+<p><strong>AJAX是一种在无需重新加载整个网页的情况下，能够更新部分页面内容的新方法</strong> </p>
+<p>AJAX 不是新的编程语言，而是使用现有技术混合使用的一种新方法。ajax 中使用的技术有 JavaScript, html , dom , xml ,css 等。主要是 JavaScript , XML. </p>
+<p>JavaScript: 使用脚本对象 XMLHttpRequest 发送请求， 接收响应数据 XML:  发送和接收的数据格式，现在使用 json </p>
+<p>AJAX 不单需要前端的技术，同时需要后端（服务器）的配合。服务器需要提供数据，数据 是 AJAX 请求的响应结果。 </p>
+<h3 id="AJAX异步实现步骤"><a href="#AJAX异步实现步骤" class="headerlink" title="AJAX异步实现步骤"></a>AJAX异步实现步骤</h3><h4 id="在标签上边绑定onclick事件，doAjax"><a href="#在标签上边绑定onclick事件，doAjax" class="headerlink" title="在标签上边绑定onclick事件，doAjax"></a>在标签上边绑定onclick事件，doAjax</h4><h3 id="编写方法doAjax"><a href="#编写方法doAjax" class="headerlink" title="编写方法doAjax"></a>编写方法doAjax</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">doAjax</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	Var proid = <span class="built_in">document</span>.getElementById(<span class="string">&quot;proid&quot;</span>).value;</span><br><span class="line">    	<span class="comment">//创建异步请求对象</span></span><br><span class="line">    	<span class="keyword">var</span> xmlHttp = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    	<span class="comment">//绑定事件</span></span><br><span class="line">    	xmlHttp.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(xmlHttp.readyState == <span class="number">4</span> $$ xmlHttp.status ==<span class="number">200</span>)&#123;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">//初始化请求参数</span></span><br><span class="line">    xmlHttp.open(<span class="string">&quot;get&quot;</span>,<span class="string">&quot;searchProvinceJson?proid&quot;</span>+proid,<span class="literal">false</span>);<span class="comment">//true表示异步请求</span></span><br><span class="line">    <span class="comment">//发送请求</span></span><br><span class="line">    xmlHttp.send();</span><br><span class="line">	&#125;    </span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="JQuery学习"><a href="#JQuery学习" class="headerlink" title="JQuery学习"></a>JQuery学习</h2><h3 id="JQuery介绍"><a href="#JQuery介绍" class="headerlink" title="JQuery介绍"></a>JQuery介绍</h3><blockquote>
+<p>jQuery是一款跨主流浏览器的JavaScript库，封装了JavaScript 相关方法调用，简化<br>JavaScript对HTML DOM操作 </p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://jquery.com/">官网</a></p>
+<h3 id="JQuery优势"><a href="#JQuery优势" class="headerlink" title="JQuery优势"></a>JQuery优势</h3><h4 id="免费，开源且轻量级的-js-库，容量很小"><a href="#免费，开源且轻量级的-js-库，容量很小" class="headerlink" title="免费，开源且轻量级的 js 库，容量很小"></a>免费，开源且轻量级的 js 库，容量很小</h4><h4 id="兼容市面上主流浏览器，例如-IE，Firefox，Chrome"><a href="#兼容市面上主流浏览器，例如-IE，Firefox，Chrome" class="headerlink" title="兼容市面上主流浏览器，例如 IE，Firefox，Chrome"></a>兼容市面上主流浏览器，例如 IE，Firefox，Chrome</h4><h4 id="能够处理-HTML-JSP-XML、CSS、DOM、事件、实现动画效果，也能提供异步-AJAX-功能"><a href="#能够处理-HTML-JSP-XML、CSS、DOM、事件、实现动画效果，也能提供异步-AJAX-功能" class="headerlink" title="能够处理 HTML/JSP/XML、CSS、DOM、事件、实现动画效果，也能提供异步 AJAX 功能"></a>能够处理 HTML/JSP/XML、CSS、DOM、事件、实现动画效果，也能提供异步 AJAX 功能</h4><h4 id="成熟的插件可供选择，多种-js-组件，例如日历组件（点击按钮显示下来日期）"><a href="#成熟的插件可供选择，多种-js-组件，例如日历组件（点击按钮显示下来日期）" class="headerlink" title="成熟的插件可供选择，多种 js 组件，例如日历组件（点击按钮显示下来日期）"></a>成熟的插件可供选择，多种 js 组件，例如日历组件（点击按钮显示下来日期）</h4><h4 id="不用再在-html-里面通过-lt-script-gt-标签插入一大堆-js-来调用命令了"><a href="#不用再在-html-里面通过-lt-script-gt-标签插入一大堆-js-来调用命令了" class="headerlink" title="不用再在 html 里面通过&lt;script&gt;标签插入一大堆 js 来调用命令了"></a>不用再在 html 里面通过<code>&lt;script&gt;</code>标签插入一大堆 js 来调用命令了</h4><h3 id="使用-JavaScript-定位-DOM-对象常用的三种方式"><a href="#使用-JavaScript-定位-DOM-对象常用的三种方式" class="headerlink" title="使用 JavaScript 定位 DOM 对象常用的三种方式"></a>使用 JavaScript 定位 DOM 对象常用的三种方式</h3><h4 id="通过-ID-属性：document-getElementById"><a href="#通过-ID-属性：document-getElementById" class="headerlink" title="通过 ID 属性：document.getElementById()"></a>通过 ID 属性：document.getElementById()</h4><h4 id="通过-class-属性：getElementsByClassName"><a href="#通过-class-属性：getElementsByClassName" class="headerlink" title="通过 class 属性：getElementsByClassName()"></a>通过 class 属性：getElementsByClassName()</h4><h4 id="通过标签名：document-getElementsByTagName"><a href="#通过标签名：document-getElementsByTagName" class="headerlink" title="通过标签名：document.getElementsByTagName()"></a>通过标签名：document.getElementsByTagName()</h4><h4 id="简便写法：jQuery-分别使用-“-id”-“-class名”-“标签名”-封装了上面的-js-方法。"><a href="#简便写法：jQuery-分别使用-“-id”-“-class名”-“标签名”-封装了上面的-js-方法。" class="headerlink" title="简便写法：jQuery 分别使用$(“#id”) ,  $(“.class名”) ,  $(“标签名”) 封装了上面的 js 方法。"></a>简便写法：jQuery 分别使用$(“#id”) ,  $(“.class名”) ,  $(“标签名”) 封装了上面的 js 方法。</h4><h3 id="DOM-对象"><a href="#DOM-对象" class="headerlink" title="DOM 对象"></a>DOM 对象</h3><p>文档对象模型（Document Object Model，简称 DOM），是 W3C 组织推荐的处理可扩展 标志语言的标准编程接口。  </p>
+<p>通过 DOM 对 HTML 页面的解析，可以将页面元素解析为元素节点、属性节点和文本节 点，这些解析出的节点对象，即 DOM 对象。DOM 对象可以使用 JavaScript 中的方法。</p>
+<h3 id="JavaScript-对象和-jQuery-对象"><a href="#JavaScript-对象和-jQuery-对象" class="headerlink" title="JavaScript 对象和 jQuery 对象"></a>JavaScript 对象和 jQuery 对象</h3><p>用 JavaScript 语法创建的对象叫做 JavaScript 对象, JavaScript 对象只能调用 JavaScript 对 象的 API。 </p>
+<p>用 JQuery 语法创建的对象叫做 JQuery 对象, jQuery 对象只能调用 jQuery 对象的 API。 jQuery 对象是一个数组。在数组中存放本次定位的 DOM 对象。 </p>
+<p>JQuery 对象与 JavaScript 对象是可以互相转化的，一般地，由于 Jquery 用起来更加方便， 我们都是将 JavaScript 对象转化成 Jquery 对象</p>
+<h3 id="获取-jQuery"><a href="#获取-jQuery" class="headerlink" title="获取 jQuery"></a>获取 jQuery</h3><p><a target="_blank" rel="noopener" href="https://jquery.com/download/">官网</a></p>
+<h3 id="DOM-对象和-jQuery-对象"><a href="#DOM-对象和-jQuery-对象" class="headerlink" title="DOM 对象和 jQuery 对象"></a>DOM 对象和 jQuery 对象</h3><p>DOM 对象是用 JavaScript 语法创建的对象，也看做是 js 对象。 </p>
+<h4 id="DOM-对象转换-jQuery-对象"><a href="#DOM-对象转换-jQuery-对象" class="headerlink" title="DOM 对象转换 jQuery 对象"></a>DOM 对象转换 jQuery 对象</h4><p>使用<code>$(DOM 对象) </code>方式，可以 DOM 对象转换为 jQuery 对象， 转换为 jQuery 对象才可以 使用 jQuery 中的提供的方法，操作 DOM 对象。一般情况下，在命名 jQuery 对象时，为了 与 DOM 对象进行区分，习惯性的以$ 开头，这不是必须的。 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">&quot;center&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">value</span>=<span class="string">&quot;这是一个按钮&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;btnClick()&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">srcipt</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span></span><br><span class="line">	//使用js方法获取DOM对象</span><br><span class="line">    var domBtn = document.getElementById(&quot;btn&quot;);</span><br><span class="line">    //使用JQuery函数 $() 把DOM对象转换成JQuery对象</span><br><span class="line">    var $btn = $(domBtn);</span><br><span class="line">    //调用Jquery方法val()</span><br><span class="line">    alert(&quot;2= &quot;+$btn.val());</span><br><span class="line"><span class="tag">&lt;/<span class="name">srcipt</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="jQuery对象转为DOM对象"><a href="#jQuery对象转为DOM对象" class="headerlink" title="jQuery对象转为DOM对象"></a>jQuery对象转为DOM对象</h3><p>jQuery 对象本身为数组对象，该数组中的第 0 个元素即为该 jQuery 对象对应的 DOM 对象。所以有两种方式可以获取到 DOM 对象：get(0) 方式与下标[0] </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span> <span class="attr">value</span>=<span class="string">&quot;计算平方&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;btnClick()&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;txt&quot;</span> <span class="attr">value</span>=<span class="string">&quot;输入整数&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">text</span>/<span class="attr">javascript</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">btnClick</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">//从Jquery对象数组中第0个元素为DOM对象</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">//var domObj = $(&quot;#txt&quot;).get(0);</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> domObj = $(<span class="string">&quot;#txt&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">        <span class="comment">//使用DOM对象的属性value</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> num = domObj.value;</span></span><br><span class="line">        domObj.value = num*num;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><blockquote>
+<p>过滤器就是过滤条件，对已经定位到数组中 DOM 对象进行过滤筛选，过滤条件不能独立 出现在 jquery 函数，如果使用只能出现在选择器后方。 </p>
+</blockquote>
+<h4 id="基本过滤器"><a href="#基本过滤器" class="headerlink" title="基本过滤器"></a>基本过滤器</h4><h5 id="选择第一个-first-保留数组中第一个-DOM-对象"><a href="#选择第一个-first-保留数组中第一个-DOM-对象" class="headerlink" title="选择第一个 first, 保留数组中第一个 DOM 对象"></a>选择第一个 first, 保留数组中第一个 DOM 对象</h5><p>语法：$(“选择器:first”) </p>
+<h5 id="选择最后个-last-保留数组中最后-DOM-对象"><a href="#选择最后个-last-保留数组中最后-DOM-对象" class="headerlink" title="选择最后个 last, 保留数组中最后 DOM 对象"></a>选择最后个 last, 保留数组中最后 DOM 对象</h5><p>语法：$(“选择器:last”) </p>
+<h5 id="选择数组中指定对象"><a href="#选择数组中指定对象" class="headerlink" title="选择数组中指定对象"></a>选择数组中指定对象</h5><p>语法：$(“选择器:eq(数组索引)”) </p>
+<h5 id="选择数组中小于指定索引的所有-DOM-对象"><a href="#选择数组中小于指定索引的所有-DOM-对象" class="headerlink" title="选择数组中小于指定索引的所有 DOM 对象"></a>选择数组中小于指定索引的所有 DOM 对象</h5><p>语法：$(“选择器:lt(数组索引)”) </p>
+<h5 id="选择数组中大于指定索引的所有-DOM-对象"><a href="#选择数组中大于指定索引的所有-DOM-对象" class="headerlink" title="选择数组中大于指定索引的所有 DOM 对象"></a>选择数组中大于指定索引的所有 DOM 对象</h5><p>语法：$(“选择器:gt(数组索引)”) </p>
+<h4 id="表单对象属性过滤器"><a href="#表单对象属性过滤器" class="headerlink" title="表单对象属性过滤器"></a>表单对象属性过滤器</h4><h5 id="选择可用的文本框"><a href="#选择可用的文本框" class="headerlink" title="选择可用的文本框"></a>选择可用的文本框</h5><p>$(“:text:enabled”) </p>
+<h5 id="选择不可用的文本框"><a href="#选择不可用的文本框" class="headerlink" title="选择不可用的文本框"></a>选择不可用的文本框</h5><p>$(“:text:disabled”) </p>
+<h5 id="复选框选中的元素"><a href="#复选框选中的元素" class="headerlink" title="复选框选中的元素"></a>复选框选中的元素</h5><p>$(“:checkbox:checked”) </p>
+<h5 id="选择指定下拉列表的被选中元素"><a href="#选择指定下拉列表的被选中元素" class="headerlink" title="选择指定下拉列表的被选中元素"></a>选择指定下拉列表的被选中元素</h5><p>选择器&gt;option:selected </p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="val"><a href="#val" class="headerlink" title="val"></a>val</h4><p>操作数组中 DOM 对象的 value 属性. </p>
+<p>$(选择器).val() ：无参数调用形式， 读取数组中第一个 DOM 对象的 value 属性值 </p>
+<p>$(选择器).val(值)：有参形式调用;对数组中所有 DOM 对象的 value 属性值进行统一赋值 </p>
+<h4 id="text"><a href="#text" class="headerlink" title="text"></a>text</h4><p>操作数组中所有 DOM 对象的【文字显示内容属性】 </p>
+<p>$(选择器).text():无参数调用，读取数组中所有 DOM 对象的文字显示内容，将得到内容拼接 为一个字符串返回 </p>
+<p>$(选择器).text(值):有参数方式，对数组中所有 DOM 对象的文字显示内容进行统一赋值 </p>
+<h4 id="attr"><a href="#attr" class="headerlink" title="attr"></a>attr</h4><p>对 val, text 之外的其他属性操作 </p>
+<p>$(选择器).attr(“属性名”): 获取 DOM 数组第一个对象的属性值</p>
+<p> $(选择器).attr(“属性名”,“值”): 对数组中所有 DOM 对象的属性设为新值 </p>
+<h4 id="hide"><a href="#hide" class="headerlink" title="hide"></a>hide</h4><p>$(选择器).hide() :将数组中所有 DOM 对象隐藏起来 </p>
+<h4 id="show"><a href="#show" class="headerlink" title="show"></a>show</h4><p>$(选择器).show():将数组中所有 DOM 对象在浏览器中显示起来 </p>
+<h4 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h4><p>$(选择器).remove() : 将数组中所有 DOM 对象及其子对象一并删除 </p>
+<h4 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h4><p>$(选择器).empty()：将数组中所有 DOM 对象的子对象删除 </p>
+<h4 id="append"><a href="#append" class="headerlink" title="append"></a>append</h4><p>为数组中所有 DOM 对象添加子对象 </p>
+<p>$(选择器).append(“<div>我动态添加的 div</div>“) </p>
+<h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><p>设置或返回被选元素的内容（innerHTML）。<br>$(选择器).html()：无参数调用方法，获取 DOM 数组第一个匹元素的内容。<br>$(选择器).html(值)：有参数调用，用于设置 DOM 数组中所有元素的内容。 </p>
+<h4 id="each"><a href="#each" class="headerlink" title="each"></a>each</h4><p>each 是对数组，json 和 dom 数组等的遍历,对每个元素调用一次函数。</p>
+<p>语法 1：$.each( 要遍历的对象, function(index,element) { 处理程序 } ) </p>
+<p>语法 2：jQuery 对象.each( function( index, element ) { 处理程序 }  ) index: 数组的下标 element: 数组的对象 </p>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><p>jQuery 提供多个与 AJAX 有关的方法。通过 jQuery AJAX 方法，您能够使用 HTTP Get 和 HTTP Post 从远程服务器上请求文本、HTML、XML 或 JSON 同时能够把接收的数据更新 到 DOM 对象。 </p>
+<h4 id="ajax-1"><a href="#ajax-1" class="headerlink" title="$.ajax()"></a>$.ajax()</h4><p>$.ajax() 是 jQuery 中 AJAX 请求的核心方法，所有的其他方法都是在内部使用此方法。 </p>
+<h5 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.ajax( &#123; <span class="attr">name</span>:value, <span class="attr">name</span>:value, ... &#125; ) </span><br></pre></td></tr></table></figure>
+
+<p>说明：参数是 json 的数据，包含请求方式，数据，回调方法等</p>
+<p> async ： 布尔值，表示请求是否异步处理。默认是 true </p>
+<p>contentType ：发送数据到服务器时所使用的内容类型。默认是： “application/x-www-form-urlencoded”。</p>
+<p> data：规定要发送到服务器的数据，可以是：string， 数组，多数是 json </p>
+<p>dataType：期望从服务器响应的数据类型。jQuery 从 xml, json, text,, html 这些中测试最可能 的类型 “xml” - 一个 XML 文档 “html” - HTML 作为纯文本 “text” - 纯文本字符串 “json” - 以 JSON 运行响应，并以对象返回 </p>
+<p>error(xhr,status,error)：如果请求失败要运行的函数, 其中 xhr, status, error 是自定义的形参名 success(result,status,xhr)：当请求成功时运行的函数，其中 result, status, xhr 是自定义的形参 名 type：规定请求的类型（GET 或 POST 等），默认是 GET， get，post 不用区分大小写 url：规定发送请求的 URL。 </p>
+<p>以上是常用的参数。 error() , success()中的 xhr 是 XMLHttpRequest 对象</p>
+<h4 id="get"><a href="#get" class="headerlink" title="$.get()"></a>$.get()</h4><p>$.get() 方法使用 HTTP GET 请求从服务器加载数据。 </p>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$.get(</span><br><span class="line">    url,</span><br><span class="line">    data,</span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">data,status,xhr</span>),</span></span><br><span class="line"><span class="function">    <span class="title">dataType</span></span></span><br><span class="line"><span class="function">) </span></span><br></pre></td></tr></table></figure>
+
+<p>url 必需。规定您需要请求的 URL。 </p>
+<p>data 可选。规定连同请求发送到服务器的数据。 </p>
+<p>function(data,status,xhr)可选。当请求成功时运行的函数。</p>
+<p>data,status,xhr 是自定义形参名。 </p>
+<p>参数说明： data - 包含来自请求的结果数据 </p>
+<p>status - 包含请求的状态（”success”、”notmodified”、”error”、”timeout”、”parsererror”） </p>
+<p>xhr - 包含 XMLHttpRequest 对象 </p>
+<p>dataType 可选。规定预期的服务器响应的数据类型。默认地，jQuery 会智能判断。</p>
+<p>可能的 类型： </p>
+<p>“xml” - 一个 XML 文档 </p>
+<p>“html” - HTML 作为纯文本 </p>
+<p>“text” - 纯文本字符串</p>
+<p>“json” - 以 JSON 运行响应，并以对象返回 </p>
+<h4 id="post"><a href="#post" class="headerlink" title="$.post()"></a>$.post()</h4><p>$.post() 方法使用 HTTP POST 请求从服务器加载数据。 语法：$.post(URL,data,function(data,status,xhr),dataType) 参数同$get() </p>
+
+    </div>
+
+    
+    
+    
+<div>
+      
+        
+      
+</div>
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E5%89%8D%E7%AB%AF/" rel="tag"> 前端</a>
+              <a href="/blog/tags/ajax/" rel="tag"> ajax</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/10/23/vue%E5%AD%A6%E4%B9%A0/" rel="prev" title="Vue.js学习">
+      <i class="fa fa-chevron-left"></i> Vue.js学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AJAX%E5%92%8CJQuery%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">AJAX和JQuery学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AJAX%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.1.</span> <span class="nav-text">AJAX学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.1.1.</span> <span class="nav-text">异步请求对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">AJAX简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX%E5%BC%82%E6%AD%A5%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.3.</span> <span class="nav-text">AJAX异步实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E6%A0%87%E7%AD%BE%E4%B8%8A%E8%BE%B9%E7%BB%91%E5%AE%9Aonclick%E4%BA%8B%E4%BB%B6%EF%BC%8CdoAjax"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">在标签上边绑定onclick事件，doAjax</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%96%B9%E6%B3%95doAjax"><span class="nav-number">1.1.4.</span> <span class="nav-text">编写方法doAjax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JQuery%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.</span> <span class="nav-text">JQuery学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.1.</span> <span class="nav-text">JQuery介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.2.</span> <span class="nav-text">JQuery优势</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%8D%E8%B4%B9%EF%BC%8C%E5%BC%80%E6%BA%90%E4%B8%94%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84-js-%E5%BA%93%EF%BC%8C%E5%AE%B9%E9%87%8F%E5%BE%88%E5%B0%8F"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">免费，开源且轻量级的 js 库，容量很小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E5%B8%82%E9%9D%A2%E4%B8%8A%E4%B8%BB%E6%B5%81%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%8C%E4%BE%8B%E5%A6%82-IE%EF%BC%8CFirefox%EF%BC%8CChrome"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">兼容市面上主流浏览器，例如 IE，Firefox，Chrome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%83%BD%E5%A4%9F%E5%A4%84%E7%90%86-HTML-JSP-XML%E3%80%81CSS%E3%80%81DOM%E3%80%81%E4%BA%8B%E4%BB%B6%E3%80%81%E5%AE%9E%E7%8E%B0%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C%EF%BC%8C%E4%B9%9F%E8%83%BD%E6%8F%90%E4%BE%9B%E5%BC%82%E6%AD%A5-AJAX-%E5%8A%9F%E8%83%BD"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">能够处理 HTML&#x2F;JSP&#x2F;XML、CSS、DOM、事件、实现动画效果，也能提供异步 AJAX 功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%90%E7%86%9F%E7%9A%84%E6%8F%92%E4%BB%B6%E5%8F%AF%E4%BE%9B%E9%80%89%E6%8B%A9%EF%BC%8C%E5%A4%9A%E7%A7%8D-js-%E7%BB%84%E4%BB%B6%EF%BC%8C%E4%BE%8B%E5%A6%82%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6%EF%BC%88%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E6%98%BE%E7%A4%BA%E4%B8%8B%E6%9D%A5%E6%97%A5%E6%9C%9F%EF%BC%89"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">成熟的插件可供选择，多种 js 组件，例如日历组件（点击按钮显示下来日期）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E7%94%A8%E5%86%8D%E5%9C%A8-html-%E9%87%8C%E9%9D%A2%E9%80%9A%E8%BF%87-lt-script-gt-%E6%A0%87%E7%AD%BE%E6%8F%92%E5%85%A5%E4%B8%80%E5%A4%A7%E5%A0%86-js-%E6%9D%A5%E8%B0%83%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BA%86"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">不用再在 html 里面通过&lt;script&gt;标签插入一大堆 js 来调用命令了</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-JavaScript-%E5%AE%9A%E4%BD%8D-DOM-%E5%AF%B9%E8%B1%A1%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">使用 JavaScript 定位 DOM 对象常用的三种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-ID-%E5%B1%9E%E6%80%A7%EF%BC%9Adocument-getElementById"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">通过 ID 属性：document.getElementById()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-class-%E5%B1%9E%E6%80%A7%EF%BC%9AgetElementsByClassName"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">通过 class 属性：getElementsByClassName()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E6%A0%87%E7%AD%BE%E5%90%8D%EF%BC%9Adocument-getElementsByTagName"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">通过标签名：document.getElementsByTagName()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E4%BE%BF%E5%86%99%E6%B3%95%EF%BC%9AjQuery-%E5%88%86%E5%88%AB%E4%BD%BF%E7%94%A8-%E2%80%9C-id%E2%80%9D-%E2%80%9C-class%E5%90%8D%E2%80%9D-%E2%80%9C%E6%A0%87%E7%AD%BE%E5%90%8D%E2%80%9D-%E5%B0%81%E8%A3%85%E4%BA%86%E4%B8%8A%E9%9D%A2%E7%9A%84-js-%E6%96%B9%E6%B3%95%E3%80%82"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">简便写法：jQuery 分别使用$(“#id”) ,  $(“.class名”) ,  $(“标签名”) 封装了上面的 js 方法。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.4.</span> <span class="nav-text">DOM 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-%E5%AF%B9%E8%B1%A1%E5%92%8C-jQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.5.</span> <span class="nav-text">JavaScript 对象和 jQuery 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-jQuery"><span class="nav-number">1.2.6.</span> <span class="nav-text">获取 jQuery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-%E5%AF%B9%E8%B1%A1%E5%92%8C-jQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.7.</span> <span class="nav-text">DOM 对象和 jQuery 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2-jQuery-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">DOM 对象转换 jQuery 对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery%E5%AF%B9%E8%B1%A1%E8%BD%AC%E4%B8%BADOM%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.8.</span> <span class="nav-text">jQuery对象转为DOM对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">1.2.9.</span> <span class="nav-text">过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">1.2.9.1.</span> <span class="nav-text">基本过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%AC%AC%E4%B8%80%E4%B8%AA-first-%E4%BF%9D%E7%95%99%E6%95%B0%E7%BB%84%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA-DOM-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.9.1.1.</span> <span class="nav-text">选择第一个 first, 保留数组中第一个 DOM 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%9C%80%E5%90%8E%E4%B8%AA-last-%E4%BF%9D%E7%95%99%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9C%80%E5%90%8E-DOM-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.9.1.2.</span> <span class="nav-text">选择最后个 last, 保留数组中最后 DOM 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%95%B0%E7%BB%84%E4%B8%AD%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.9.1.3.</span> <span class="nav-text">选择数组中指定对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%95%B0%E7%BB%84%E4%B8%AD%E5%B0%8F%E4%BA%8E%E6%8C%87%E5%AE%9A%E7%B4%A2%E5%BC%95%E7%9A%84%E6%89%80%E6%9C%89-DOM-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.9.1.4.</span> <span class="nav-text">选择数组中小于指定索引的所有 DOM 对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A4%A7%E4%BA%8E%E6%8C%87%E5%AE%9A%E7%B4%A2%E5%BC%95%E7%9A%84%E6%89%80%E6%9C%89-DOM-%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.9.1.5.</span> <span class="nav-text">选择数组中大于指定索引的所有 DOM 对象</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">1.2.9.2.</span> <span class="nav-text">表单对象属性过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%8F%AF%E7%94%A8%E7%9A%84%E6%96%87%E6%9C%AC%E6%A1%86"><span class="nav-number">1.2.9.2.1.</span> <span class="nav-text">选择可用的文本框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E6%96%87%E6%9C%AC%E6%A1%86"><span class="nav-number">1.2.9.2.2.</span> <span class="nav-text">选择不可用的文本框</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%8D%E9%80%89%E6%A1%86%E9%80%89%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.9.2.3.</span> <span class="nav-text">复选框选中的元素</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8C%87%E5%AE%9A%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8%E7%9A%84%E8%A2%AB%E9%80%89%E4%B8%AD%E5%85%83%E7%B4%A0"><span class="nav-number">1.2.9.2.4.</span> <span class="nav-text">选择指定下拉列表的被选中元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.10.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#val"><span class="nav-number">1.2.10.1.</span> <span class="nav-text">val</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#text"><span class="nav-number">1.2.10.2.</span> <span class="nav-text">text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#attr"><span class="nav-number">1.2.10.3.</span> <span class="nav-text">attr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hide"><span class="nav-number">1.2.10.4.</span> <span class="nav-text">hide</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#show"><span class="nav-number">1.2.10.5.</span> <span class="nav-text">show</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#remove"><span class="nav-number">1.2.10.6.</span> <span class="nav-text">remove</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#empty"><span class="nav-number">1.2.10.7.</span> <span class="nav-text">empty</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#append"><span class="nav-number">1.2.10.8.</span> <span class="nav-text">append</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">1.2.10.9.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#each"><span class="nav-number">1.2.10.10.</span> <span class="nav-text">each</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax"><span class="nav-number">1.2.11.</span> <span class="nav-text">ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ajax-1"><span class="nav-number">1.2.11.1.</span> <span class="nav-text">$.ajax()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%EF%BC%9A"><span class="nav-number">1.2.11.1.1.</span> <span class="nav-text">语法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#get"><span class="nav-number">1.2.11.2.</span> <span class="nav-text">$.get()</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.11.2.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#post"><span class="nav-number">1.2.11.3.</span> <span class="nav-text">$.post()</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="白小纯"
+      src="/blog/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">白小纯</p>
+  <div class="site-description" itemprop="description">不忘初心，方得始终</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="{fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白小纯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">223k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:22</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/blog/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":70,"height":120},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
