@@ -2065,7 +2065,7 @@
       </tags>
   </entry>
   <entry>
-    <title>SSM框架之汽车租赁系统</title>
+    <title>SSM环境搭建</title>
     <url>/blog/2020/11/03/SSM%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<p>ssm整合springMVC+mybatis</p>
 <a id="more"></a>
@@ -2139,12 +2139,11 @@
 
 <h3 id="spring-springmvc整合"><a href="#spring-springmvc整合" class="headerlink" title="spring+springmvc整合"></a>spring+springmvc整合</h3>]]></content>
       <categories>
-        <category>SSM项目实战</category>
+        <category>SSM环境搭建</category>
       </categories>
       <tags>
         <tag>java</tag>
         <tag>ssm框架</tag>
-        <tag>项目实战</tag>
       </tags>
   </entry>
 </search>
