@@ -2486,4 +2486,26 @@
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>什么是DO / DTO / BO / VO /AO ?</title>
+    <url>/blog/2020/11/24/Untitled/</url>
+    <content><![CDATA[<p>工作日志….</p>
+<a id="more"></a>
+
+<h1 id="什么是DO-DTO-BO-VO-AO"><a href="#什么是DO-DTO-BO-VO-AO" class="headerlink" title="什么是DO / DTO / BO / VO /AO ?"></a>什么是DO / DTO / BO / VO /AO ?</h1><ul>
+<li>POJO 是 DO / DTO / BO / VO 的统称.</li>
+<li>DO(Data Object) :此对象与数据库表结构一一对应,通过 DAO 层向上传输数据源对象。</li>
+<li>DTO(Data Transfer Object) :数据传输对象, Service 或 Manager 向外传输的对象。</li>
+<li>BO(Business Object) :业务对象,由 Service 层输出的封装业务逻辑的对象。</li>
+<li>AO (Application Object) :应用对象,在 Web 层与 Service 层之间抽象的复用对象模型,极为贴近展示层,复用度不高。</li>
+<li>VO(View Object) :显示层对象,通常是 Web 向模板渲染引擎层传输的对象。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工作日志</category>
+      </categories>
+      <tags>
+        <tag>工作日志</tag>
+      </tags>
+  </entry>
 </search>
