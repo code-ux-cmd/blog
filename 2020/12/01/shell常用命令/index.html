@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+  <link rel="manifest" href="/blog/images/manifest.json">
+  <meta name="msapplication-config" content="/blog/images/browserconfig.xml">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gitee.com","root":"/blog/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="shell常用命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作中常用命令">
+<meta property="og:url" content="https://gitee.com/SHUAI_code/blog.git/2020/12/01/shell%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="哼着我的小调调">
+<meta property="og:description" content="shell常用命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-01T03:31:58.025Z">
+<meta property="article:modified_time" content="2020-12-01T06:52:57.272Z">
+<meta property="article:author" content="白小纯">
+<meta property="article:tag" content="脚本">
+<meta property="article:tag" content="shell命令">
+<meta property="article:tag" content="git命令">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://gitee.com/SHUAI_code/blog.git/2020/12/01/shell%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>工作中常用命令 | 哼着我的小调调</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">哼着我的小调调</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人学习与分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gitee.com/SHUAI_code/blog.git/2020/12/01/shell%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.jpg">
+      <meta itemprop="name" content="白小纯">
+      <meta itemprop="description" content="不忘初心，方得始终">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="哼着我的小调调">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          工作中常用命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-01 11:31:58 / 修改时间：14:52:57" itemprop="dateCreated datePublished" datetime="2020-12-01T11:31:58+08:00">2020-12-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/%E5%91%BD%E4%BB%A4/" itemprop="url" rel="index"><span itemprop="name">命令</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>shell常用命令</p>
+<a id="more"></a>
+
+<h1 id="常用shell命令"><a href="#常用shell命令" class="headerlink" title="常用shell命令"></a>常用shell命令</h1><h2 id="ls命令查看文件"><a href="#ls命令查看文件" class="headerlink" title="ls命令查看文件"></a>ls命令查看文件</h2><h3 id="ls-a"><a href="#ls-a" class="headerlink" title="ls - a"></a>ls - a</h3><blockquote>
+<p>Linux上的文件以.开头的文件被系统认为隐藏文件仅用ls命令是看不到他们的，而用ls -a除了显示一般文件名外，连隐藏文件也会显示出来。</p>
+</blockquote>
+<h3 id="ls-L"><a href="#ls-L" class="headerlink" title="ls -L"></a>ls -L</h3><blockquote>
+<p>该参数显示更详细的文件信息</p>
+</blockquote>
+<h3 id="ls-F：基本上等同于ls"><a href="#ls-F：基本上等同于ls" class="headerlink" title="ls -F：基本上等同于ls"></a>ls -F：基本上等同于ls</h3><blockquote>
+<p>使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
+</blockquote>
+<h2 id="cd命令切换目录"><a href="#cd命令切换目录" class="headerlink" title="cd命令切换目录"></a>cd命令切换目录</h2><h3 id="cd-aaa"><a href="#cd-aaa" class="headerlink" title="cd aaa"></a>cd aaa</h3><h3 id="cd-命令后不指定目录，会切换到当前用户的home-目录"><a href="#cd-命令后不指定目录，会切换到当前用户的home-目录" class="headerlink" title="cd 命令后不指定目录，会切换到当前用户的home 目录"></a>cd 命令后不指定目录，会切换到当前用户的home 目录</h3><h3 id="cd-作用同cd后不指定目录，切换到当前用户的home-目录"><a href="#cd-作用同cd后不指定目录，切换到当前用户的home-目录" class="headerlink" title="cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录"></a>cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录</h3><h3 id="cd-命令后跟一个减号，则会退回到切换前的目录"><a href="#cd-命令后跟一个减号，则会退回到切换前的目录" class="headerlink" title="cd - 命令后跟一个减号，则会退回到切换前的目录"></a>cd - 命令后跟一个减号，则会退回到切换前的目录</h3><h3 id="cd-返回到当前目录下的上一级目录"><a href="#cd-返回到当前目录下的上一级目录" class="headerlink" title="cd .. 返回到当前目录下的上一级目录"></a>cd .. 返回到当前目录下的上一级目录</h3><h2 id="pwd：用于显示用户当前工作目录"><a href="#pwd：用于显示用户当前工作目录" class="headerlink" title="pwd：用于显示用户当前工作目录"></a>pwd：用于显示用户当前工作目录</h2><h2 id="mkdir-和-rmdir"><a href="#mkdir-和-rmdir" class="headerlink" title="mkdir 和 rmdir"></a>mkdir 和 rmdir</h2><blockquote>
+<p>midir:创建目录 rmdir:删除目录</p>
+<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
+</blockquote>
+<h2 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a>cp命令</h2><p>复制一个文件到另一目录：cp 1.txt ../test2</p>
+<p>复制一个文件到本目录并改名：cp 1.txt 2.txt</p>
+<p>复制一个文件夹a并改名为b：cp -r a b</p>
+<h2 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h2><p>rm命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
+<p>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</p>
+<p>–r：该参数支持目录删除，功能和rmdir命令相似。</p>
+<p>–f：和-i参数相反，-f表示强制删除</p>
+<h2 id="常用的查看日志的命令"><a href="#常用的查看日志的命令" class="headerlink" title="常用的查看日志的命令"></a>常用的查看日志的命令</h2><h3 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a>tail命令</h3><h4 id="tail-100f-test-log-实时监控100行日志"><a href="#tail-100f-test-log-实时监控100行日志" class="headerlink" title="tail -100f test.log    实时监控100行日志"></a>tail -100f test.log    实时监控100行日志</h4><h4 id="tail-n-10-test-log-查询日志尾部最后10行的日志"><a href="#tail-n-10-test-log-查询日志尾部最后10行的日志" class="headerlink" title="tail -n 10 test.log  查询日志尾部最后10行的日志;"></a>tail -n 10 test.log  查询日志尾部最后10行的日志;</h4><h4 id="tail-n-10-test-log-查询10行之后的所有日志"><a href="#tail-n-10-test-log-查询10行之后的所有日志" class="headerlink" title="tail -n +10 test.log  查询10行之后的所有日志;"></a>tail -n +10 test.log  查询10行之后的所有日志;</h4><h3 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a>head命令</h3><p>跟tail是相反的，tail是看后多少行日志；例子如下：</p>
+<p>​      head -n 10 test.log  查询日志文件中的头10行日志;</p>
+<p>​      head -n -10 test.log  查询日志文件除了最后10行的其他所有日志;</p>
+<h3 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h3><p>tac是倒序查看，是cat单词反写；例子如下：</p>
+<p>​      <strong>cat -n test.log |grep “debug”  查询关键字的日志</strong></p>
+<h3 id="日志使用场景"><a href="#日志使用场景" class="headerlink" title="日志使用场景"></a>日志使用场景</h3><h4 id="应用场景一：按行号查看—过滤出关键字附近的日志"><a href="#应用场景一：按行号查看—过滤出关键字附近的日志" class="headerlink" title="应用场景一：按行号查看—过滤出关键字附近的日志"></a>应用场景一：按行号查看—过滤出关键字附近的日志</h4><ul>
+<li><p>cat -n test.log |grep “debug” 得到关键日志的行号</p>
+</li>
+<li><p>cat -n test.log |tail -n +92|head -n 20  选择关键字所在的中间一行. 然后查看这个关键字前10行和后10行的日志:</p>
+</li>
+</ul>
+<p>​      tail -n +92表示查询92行之后的日志</p>
+<p>​      head -n 20 则表示在前面的查询结果里再查前20条记录</p>
+<h4 id="应用场景二：根据日期查询日志"><a href="#应用场景二：根据日期查询日志" class="headerlink" title="应用场景二：根据日期查询日志"></a>应用场景二：根据日期查询日志</h4><p> sed -n ‘/2014-12-17 16:17:20/,/2014-12-17 16:17:36/p’ test.log</p>
+<p>   特别说明:上面的两个日期必须是日志中打印出来的日志,否则无效；</p>
+<p>​           先 grep ‘2014-12-17 16:17:20’ test.log 来确定日志中是否有该 时间点</p>
+<h4 id="应用场景三：日志内容特别多，打印在屏幕上不方便查看"><a href="#应用场景三：日志内容特别多，打印在屏幕上不方便查看" class="headerlink" title="应用场景三：日志内容特别多，打印在屏幕上不方便查看"></a>应用场景三：日志内容特别多，打印在屏幕上不方便查看</h4><p> (1)使用more和less命令,</p>
+<p>​      如： cat -n test.log |grep “debug” |more   这样就分页打印了,通过点击空格键翻页</p>
+<p>  (2)使用 &gt;xxx.txt 将其保存到文件中,到时可以拉下这个文件分析</p>
+<p>​      如：cat -n test.log |grep “debug” &gt;debug.txt</p>
+<h4 id="查询具体到某个时间段的日志"><a href="#查询具体到某个时间段的日志" class="headerlink" title="查询具体到某个时间段的日志"></a>查询具体到某个时间段的日志</h4><p>grep ‘2020-12-01 14:3[4-8]’ test.log</p>
+
+    </div>
+
+    
+    
+    
+<div>
+      
+        
+      
+</div>
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/blog/tags/%E8%84%9A%E6%9C%AC/" rel="tag"> 脚本</a>
+              <a href="/blog/tags/shell%E5%91%BD%E4%BB%A4/" rel="tag"> shell命令</a>
+              <a href="/blog/tags/git%E5%91%BD%E4%BB%A4/" rel="tag"> git命令</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/11/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="设计模式学习笔记">
+      <i class="fa fa-chevron-left"></i> 设计模式学习笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8shell%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">常用shell命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ls%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">ls命令查看文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-a"><span class="nav-number">1.1.1.</span> <span class="nav-text">ls - a</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-L"><span class="nav-number">1.1.2.</span> <span class="nav-text">ls -L</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-F%EF%BC%9A%E5%9F%BA%E6%9C%AC%E4%B8%8A%E7%AD%89%E5%90%8C%E4%BA%8Els"><span class="nav-number">1.1.3.</span> <span class="nav-text">ls -F：基本上等同于ls</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cd%E5%91%BD%E4%BB%A4%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">cd命令切换目录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-aaa"><span class="nav-number">1.2.1.</span> <span class="nav-text">cd aaa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-%E5%91%BD%E4%BB%A4%E5%90%8E%E4%B8%8D%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%EF%BC%8C%E4%BC%9A%E5%88%87%E6%8D%A2%E5%88%B0%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E7%9A%84home-%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">cd 命令后不指定目录，会切换到当前用户的home 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-%E4%BD%9C%E7%94%A8%E5%90%8Ccd%E5%90%8E%E4%B8%8D%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%88%87%E6%8D%A2%E5%88%B0%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E7%9A%84home-%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-%E5%91%BD%E4%BB%A4%E5%90%8E%E8%B7%9F%E4%B8%80%E4%B8%AA%E5%87%8F%E5%8F%B7%EF%BC%8C%E5%88%99%E4%BC%9A%E9%80%80%E5%9B%9E%E5%88%B0%E5%88%87%E6%8D%A2%E5%89%8D%E7%9A%84%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.4.</span> <span class="nav-text">cd - 命令后跟一个减号，则会退回到切换前的目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd-%E8%BF%94%E5%9B%9E%E5%88%B0%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E4%B8%8A%E4%B8%80%E7%BA%A7%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.5.</span> <span class="nav-text">cd .. 返回到当前目录下的上一级目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd%EF%BC%9A%E7%94%A8%E4%BA%8E%E6%98%BE%E7%A4%BA%E7%94%A8%E6%88%B7%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="nav-number">1.3.</span> <span class="nav-text">pwd：用于显示用户当前工作目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir-%E5%92%8C-rmdir"><span class="nav-number">1.4.</span> <span class="nav-text">mkdir 和 rmdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cp%E5%91%BD%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">cp命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm%E5%91%BD%E4%BB%A4"><span class="nav-number">1.6.</span> <span class="nav-text">rm命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.</span> <span class="nav-text">常用的查看日志的命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tail%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.1.</span> <span class="nav-text">tail命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tail-100f-test-log-%E5%AE%9E%E6%97%B6%E7%9B%91%E6%8E%A7100%E8%A1%8C%E6%97%A5%E5%BF%97"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">tail -100f test.log    实时监控100行日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tail-n-10-test-log-%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97%E5%B0%BE%E9%83%A8%E6%9C%80%E5%90%8E10%E8%A1%8C%E7%9A%84%E6%97%A5%E5%BF%97"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">tail -n 10 test.log  查询日志尾部最后10行的日志;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tail-n-10-test-log-%E6%9F%A5%E8%AF%A210%E8%A1%8C%E4%B9%8B%E5%90%8E%E7%9A%84%E6%89%80%E6%9C%89%E6%97%A5%E5%BF%97"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">tail -n +10 test.log  查询10行之后的所有日志;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.2.</span> <span class="nav-text">head命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.3.</span> <span class="nav-text">cat命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.7.4.</span> <span class="nav-text">日志使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%80%EF%BC%9A%E6%8C%89%E8%A1%8C%E5%8F%B7%E6%9F%A5%E7%9C%8B%E2%80%94%E8%BF%87%E6%BB%A4%E5%87%BA%E5%85%B3%E9%94%AE%E5%AD%97%E9%99%84%E8%BF%91%E7%9A%84%E6%97%A5%E5%BF%97"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">应用场景一：按行号查看—过滤出关键字附近的日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BA%8C%EF%BC%9A%E6%A0%B9%E6%8D%AE%E6%97%A5%E6%9C%9F%E6%9F%A5%E8%AF%A2%E6%97%A5%E5%BF%97"><span class="nav-number">1.7.4.2.</span> <span class="nav-text">应用场景二：根据日期查询日志</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%89%EF%BC%9A%E6%97%A5%E5%BF%97%E5%86%85%E5%AE%B9%E7%89%B9%E5%88%AB%E5%A4%9A%EF%BC%8C%E6%89%93%E5%8D%B0%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E4%B8%8D%E6%96%B9%E4%BE%BF%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.7.4.3.</span> <span class="nav-text">应用场景三：日志内容特别多，打印在屏幕上不方便查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%B7%E4%BD%93%E5%88%B0%E6%9F%90%E4%B8%AA%E6%97%B6%E9%97%B4%E6%AE%B5%E7%9A%84%E6%97%A5%E5%BF%97"><span class="nav-number">1.7.4.4.</span> <span class="nav-text">查询具体到某个时间段的日志</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="白小纯"
+      src="/blog/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">白小纯</p>
+  <div class="site-description" itemprop="description">不忘初心，方得始终</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/blog/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="{fa fa-star"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">白小纯</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">268k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:03</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/blog/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":70,"height":120},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

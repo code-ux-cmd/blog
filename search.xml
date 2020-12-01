@@ -2682,4 +2682,61 @@
         <tag>设计模式</tag>
       </tags>
   </entry>
+  <entry>
+    <title>工作中常用命令</title>
+    <url>/blog/2020/12/01/shell%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>shell常用命令</p>
+<a id="more"></a>
+
+<h1 id="常用shell命令"><a href="#常用shell命令" class="headerlink" title="常用shell命令"></a>常用shell命令</h1><h2 id="ls命令查看文件"><a href="#ls命令查看文件" class="headerlink" title="ls命令查看文件"></a>ls命令查看文件</h2><h3 id="ls-a"><a href="#ls-a" class="headerlink" title="ls - a"></a>ls - a</h3><blockquote>
+<p>Linux上的文件以.开头的文件被系统认为隐藏文件仅用ls命令是看不到他们的，而用ls -a除了显示一般文件名外，连隐藏文件也会显示出来。</p>
+</blockquote>
+<h3 id="ls-L"><a href="#ls-L" class="headerlink" title="ls -L"></a>ls -L</h3><blockquote>
+<p>该参数显示更详细的文件信息</p>
+</blockquote>
+<h3 id="ls-F：基本上等同于ls"><a href="#ls-F：基本上等同于ls" class="headerlink" title="ls -F：基本上等同于ls"></a>ls -F：基本上等同于ls</h3><blockquote>
+<p>使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
+</blockquote>
+<h2 id="cd命令切换目录"><a href="#cd命令切换目录" class="headerlink" title="cd命令切换目录"></a>cd命令切换目录</h2><h3 id="cd-aaa"><a href="#cd-aaa" class="headerlink" title="cd aaa"></a>cd aaa</h3><h3 id="cd-命令后不指定目录，会切换到当前用户的home-目录"><a href="#cd-命令后不指定目录，会切换到当前用户的home-目录" class="headerlink" title="cd 命令后不指定目录，会切换到当前用户的home 目录"></a>cd 命令后不指定目录，会切换到当前用户的home 目录</h3><h3 id="cd-作用同cd后不指定目录，切换到当前用户的home-目录"><a href="#cd-作用同cd后不指定目录，切换到当前用户的home-目录" class="headerlink" title="cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录"></a>cd ~ 作用同cd后不指定目录，切换到当前用户的home 目录</h3><h3 id="cd-命令后跟一个减号，则会退回到切换前的目录"><a href="#cd-命令后跟一个减号，则会退回到切换前的目录" class="headerlink" title="cd - 命令后跟一个减号，则会退回到切换前的目录"></a>cd - 命令后跟一个减号，则会退回到切换前的目录</h3><h3 id="cd-返回到当前目录下的上一级目录"><a href="#cd-返回到当前目录下的上一级目录" class="headerlink" title="cd .. 返回到当前目录下的上一级目录"></a>cd .. 返回到当前目录下的上一级目录</h3><h2 id="pwd：用于显示用户当前工作目录"><a href="#pwd：用于显示用户当前工作目录" class="headerlink" title="pwd：用于显示用户当前工作目录"></a>pwd：用于显示用户当前工作目录</h2><h2 id="mkdir-和-rmdir"><a href="#mkdir-和-rmdir" class="headerlink" title="mkdir 和 rmdir"></a>mkdir 和 rmdir</h2><blockquote>
+<p>midir:创建目录 rmdir:删除目录</p>
+<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
+</blockquote>
+<h2 id="cp命令"><a href="#cp命令" class="headerlink" title="cp命令"></a>cp命令</h2><p>复制一个文件到另一目录：cp 1.txt ../test2</p>
+<p>复制一个文件到本目录并改名：cp 1.txt 2.txt</p>
+<p>复制一个文件夹a并改名为b：cp -r a b</p>
+<h2 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h2><p>rm命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
+<p>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</p>
+<p>–r：该参数支持目录删除，功能和rmdir命令相似。</p>
+<p>–f：和-i参数相反，-f表示强制删除</p>
+<h2 id="常用的查看日志的命令"><a href="#常用的查看日志的命令" class="headerlink" title="常用的查看日志的命令"></a>常用的查看日志的命令</h2><h3 id="tail命令"><a href="#tail命令" class="headerlink" title="tail命令"></a>tail命令</h3><h4 id="tail-100f-test-log-实时监控100行日志"><a href="#tail-100f-test-log-实时监控100行日志" class="headerlink" title="tail -100f test.log    实时监控100行日志"></a>tail -100f test.log    实时监控100行日志</h4><h4 id="tail-n-10-test-log-查询日志尾部最后10行的日志"><a href="#tail-n-10-test-log-查询日志尾部最后10行的日志" class="headerlink" title="tail -n 10 test.log  查询日志尾部最后10行的日志;"></a>tail -n 10 test.log  查询日志尾部最后10行的日志;</h4><h4 id="tail-n-10-test-log-查询10行之后的所有日志"><a href="#tail-n-10-test-log-查询10行之后的所有日志" class="headerlink" title="tail -n +10 test.log  查询10行之后的所有日志;"></a>tail -n +10 test.log  查询10行之后的所有日志;</h4><h3 id="head命令"><a href="#head命令" class="headerlink" title="head命令"></a>head命令</h3><p>跟tail是相反的，tail是看后多少行日志；例子如下：</p>
+<p>​      head -n 10 test.log  查询日志文件中的头10行日志;</p>
+<p>​      head -n -10 test.log  查询日志文件除了最后10行的其他所有日志;</p>
+<h3 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h3><p>tac是倒序查看，是cat单词反写；例子如下：</p>
+<p>​      <strong>cat -n test.log |grep “debug”  查询关键字的日志</strong></p>
+<h3 id="日志使用场景"><a href="#日志使用场景" class="headerlink" title="日志使用场景"></a>日志使用场景</h3><h4 id="应用场景一：按行号查看—过滤出关键字附近的日志"><a href="#应用场景一：按行号查看—过滤出关键字附近的日志" class="headerlink" title="应用场景一：按行号查看—过滤出关键字附近的日志"></a>应用场景一：按行号查看—过滤出关键字附近的日志</h4><ul>
+<li><p>cat -n test.log |grep “debug” 得到关键日志的行号</p>
+</li>
+<li><p>cat -n test.log |tail -n +92|head -n 20  选择关键字所在的中间一行. 然后查看这个关键字前10行和后10行的日志:</p>
+</li>
+</ul>
+<p>​      tail -n +92表示查询92行之后的日志</p>
+<p>​      head -n 20 则表示在前面的查询结果里再查前20条记录</p>
+<h4 id="应用场景二：根据日期查询日志"><a href="#应用场景二：根据日期查询日志" class="headerlink" title="应用场景二：根据日期查询日志"></a>应用场景二：根据日期查询日志</h4><p> sed -n ‘/2014-12-17 16:17:20/,/2014-12-17 16:17:36/p’ test.log</p>
+<p>   特别说明:上面的两个日期必须是日志中打印出来的日志,否则无效；</p>
+<p>​           先 grep ‘2014-12-17 16:17:20’ test.log 来确定日志中是否有该 时间点</p>
+<h4 id="应用场景三：日志内容特别多，打印在屏幕上不方便查看"><a href="#应用场景三：日志内容特别多，打印在屏幕上不方便查看" class="headerlink" title="应用场景三：日志内容特别多，打印在屏幕上不方便查看"></a>应用场景三：日志内容特别多，打印在屏幕上不方便查看</h4><p> (1)使用more和less命令,</p>
+<p>​      如： cat -n test.log |grep “debug” |more   这样就分页打印了,通过点击空格键翻页</p>
+<p>  (2)使用 &gt;xxx.txt 将其保存到文件中,到时可以拉下这个文件分析</p>
+<p>​      如：cat -n test.log |grep “debug” &gt;debug.txt</p>
+<h4 id="查询具体到某个时间段的日志"><a href="#查询具体到某个时间段的日志" class="headerlink" title="查询具体到某个时间段的日志"></a>查询具体到某个时间段的日志</h4><p>grep ‘2020-12-01 14:3[4-8]’ test.log</p>
+]]></content>
+      <categories>
+        <category>命令</category>
+      </categories>
+      <tags>
+        <tag>脚本</tag>
+        <tag>shell命令</tag>
+        <tag>git命令</tag>
+      </tags>
+  </entry>
 </search>
