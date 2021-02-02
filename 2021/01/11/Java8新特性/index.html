@@ -30,7 +30,7 @@
 <meta property="og:description" content="Lambda表达式（也叫做闭包）是Java 8中最大的也是期待已久的变化。它允许我们将一个函数当作方法的参数（传递函数），或者说把代码当作数据，这是每个函数式编程者熟悉的概念。很多基于JVM平台的语言一开始就支持Lambda表达式，但是Java程序员没有选择，只能使用匿名内部类来替代Lambda表达式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-11T07:50:42.686Z">
-<meta property="article:modified_time" content="2021-01-11T07:52:18.636Z">
+<meta property="article:modified_time" content="2021-01-11T08:42:52.674Z">
 <meta property="article:author" content="白小纯">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="随笔">
@@ -222,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-01-11 15:50:42 / 修改时间：15:52:18" itemprop="dateCreated datePublished" datetime="2021-01-11T15:50:42+08:00">2021-01-11</time>
+              <time title="创建时间：2021-01-11 15:50:42 / 修改时间：16:42:52" itemprop="dateCreated datePublished" datetime="2021-01-11T15:50:42+08:00">2021-01-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +240,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>151</span>
+              <span>876</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -262,6 +262,18 @@
         <p>Lambda表达式（也叫做闭包）是Java 8中最大的也是期待已久的变化。它允许我们将一个函数当作方法的参数（传递函数），或者说把代码当作数据，这是每个函数式编程者熟悉的概念。很多基于JVM平台的语言一开始就支持Lambda表达式，但是Java程序员没有选择，只能使用匿名内部类来替代Lambda表达式。</p>
 <a id="more"></a>
 
+<h1 id="forEach循环"><a href="#forEach循环" class="headerlink" title="forEach循环"></a>forEach循环</h1><h2 id="第一种，最简单的一种"><a href="#第一种，最简单的一种" class="headerlink" title="第一种，最简单的一种"></a>第一种，最简单的一种</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Arrays.asList(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>).forEach(System.out::println);</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二种结果与第一种相同"><a href="#第二种结果与第一种相同" class="headerlink" title="第二种结果与第一种相同"></a>第二种结果与第一种相同</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Arrays.asList(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>).forEach((String e) -&gt; System.out.println(e));</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+
+<h2 id="可以增加参数打印"><a href="#可以增加参数打印" class="headerlink" title="可以增加参数打印"></a>可以增加参数打印</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String separator = <span class="string">&quot;,&quot;</span>;</span><br><span class="line">Arrays.asList(<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>).forEach((String e) -&gt; System.out.println(e + separator));</span><br><span class="line">a,</span><br><span class="line">b,</span><br><span class="line">c,</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序打印"><a href="#排序打印" class="headerlink" title="排序打印"></a>排序打印</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; asList = Arrays.asList(<span class="string">&quot;b&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;c&quot;</span>);</span><br><span class="line">asList.sort((o1, o2) -&gt; o1.compareTo(o2));</span><br><span class="line">asList.forEach(System.out::println);</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+
+<p>等同于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; asList = Arrays.asList(<span class="string">&quot;b&quot;</span>, <span class="string">&quot;a&quot;</span>, <span class="string">&quot;c&quot;</span>);</span><br><span class="line">asList.sort(String::compareTo);</span><br><span class="line">asList.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<p>等同于</p>
 
     </div>
 
@@ -297,7 +309,10 @@
     <a href="/blog/2020/12/01/shell%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="工作中常用命令">
       <i class="fa fa-chevron-left"></i> 工作中常用命令
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/blog/2021/01/17/MyBatis-plus/" rel="next" title="MyBatis-Plus学习">
+      MyBatis-Plus学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -356,6 +371,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#forEach%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.</span> <span class="nav-text">forEach循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%8C%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%80%E7%A7%8D"><span class="nav-number">1.1.</span> <span class="nav-text">第一种，最简单的一种</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E7%BB%93%E6%9E%9C%E4%B8%8E%E7%AC%AC%E4%B8%80%E7%A7%8D%E7%9B%B8%E5%90%8C"><span class="nav-number">1.2.</span> <span class="nav-text">第二种结果与第一种相同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E5%A2%9E%E5%8A%A0%E5%8F%82%E6%95%B0%E6%89%93%E5%8D%B0"><span class="nav-number">1.3.</span> <span class="nav-text">可以增加参数打印</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%89%93%E5%8D%B0"><span class="nav-number">1.4.</span> <span class="nav-text">排序打印</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -371,7 +387,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/blog/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -384,7 +400,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/blog/tags/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -420,12 +436,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">268k</span>
+    <span title="站点总字数">282k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:04</span>
+    <span title="站点阅读时长">4:16</span>
 </div>
 
         
