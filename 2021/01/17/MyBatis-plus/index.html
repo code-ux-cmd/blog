@@ -29,12 +29,14 @@
 <meta property="og:site_name" content="哼着我的小调调">
 <meta property="og:description" content="MyBatis-Plus（简称 MP）是一个 MyBatis 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s3.ax1x.com/2021/02/10/ywHcm8.png">
 <meta property="article:published_time" content="2021-01-17T04:58:55.830Z">
-<meta property="article:modified_time" content="2021-02-09T12:31:33.765Z">
+<meta property="article:modified_time" content="2021-02-10T09:18:27.507Z">
 <meta property="article:author" content="白小纯">
 <meta property="article:tag" content="随笔">
 <meta property="article:tag" content="MyBatis-Plus">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s3.ax1x.com/2021/02/10/ywHcm8.png">
 
 <link rel="canonical" href="https://github.com/code-ux-cmd/blog/2021/01/17/MyBatis-plus/">
 
@@ -228,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-09 20:31:33" itemprop="dateModified" datetime="2021-02-09T20:31:33+08:00">2021-02-09</time>
+                <time title="修改时间：2021-02-10 17:18:27" itemprop="dateModified" datetime="2021-02-10T17:18:27+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>14k</span>
+              <span>21k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>13 分钟</span>
+              <span>19 分钟</span>
             </span>
 
         </div>
@@ -406,6 +408,193 @@
 <h5 id="在mybatisPlusConfig中注册Bean"><a href="#在mybatisPlusConfig中注册Bean" class="headerlink" title="在mybatisPlusConfig中注册Bean"></a>在mybatisPlusConfig中注册Bean</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 逻辑删除</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ISqlInjector <span class="title">sqlInjector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> LogicSqlInjector();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意</strong> ：数据库中deleted必须有值</p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/ywHcm8"><img src="https://s3.ax1x.com/2021/02/10/ywHcm8.png" alt="ywHcm8.png"></a></p>
+<ul>
+<li>Wrapper ： 条件构造抽象类，最顶端父类</li>
+<li>AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件</li>
+<li>QueryWrapper ： Entity 对象封装操作类，不是用lambda语法</li>
+<li>UpdateWrapper ： Update 条件封装，用于Entity对象更新操作</li>
+<li>AbstractLambdaWrapper ： Lambda 语法使用 Wrapper统一处理解析 lambda 获取 column。</li>
+<li>LambdaQueryWrapper ：用于Lambda语法使用的查询Wrapper</li>
+<li>LambdaUpdateWrapper ： Lambda 更新封装Wrapper</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>查询方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setSqlSelect</td>
+<td>设置 SELECT 查询字段</td>
+</tr>
+<tr>
+<td>where</td>
+<td>WHERE 语句，拼接 + <code>WHERE 条件</code></td>
+</tr>
+<tr>
+<td>and</td>
+<td>AND 语句，拼接 + <code>AND 字段=值</code></td>
+</tr>
+<tr>
+<td>andNew</td>
+<td>AND 语句，拼接 + <code>AND (字段=值)</code></td>
+</tr>
+<tr>
+<td>or</td>
+<td>OR 语句，拼接 + <code>OR 字段=值</code></td>
+</tr>
+<tr>
+<td>orNew</td>
+<td>OR 语句，拼接 + <code>OR (字段=值)</code></td>
+</tr>
+<tr>
+<td>eq</td>
+<td>等于=</td>
+</tr>
+<tr>
+<td>allEq</td>
+<td>基于 map 内容等于=</td>
+</tr>
+<tr>
+<td>ne</td>
+<td>不等于&lt;&gt;</td>
+</tr>
+<tr>
+<td>gt</td>
+<td>大于&gt;</td>
+</tr>
+<tr>
+<td>ge</td>
+<td>大于等于&gt;=</td>
+</tr>
+<tr>
+<td>lt</td>
+<td>小于&lt;</td>
+</tr>
+<tr>
+<td>le</td>
+<td>小于等于&lt;=</td>
+</tr>
+<tr>
+<td>like</td>
+<td>模糊查询 LIKE</td>
+</tr>
+<tr>
+<td>notLike</td>
+<td>模糊查询 NOT LIKE</td>
+</tr>
+<tr>
+<td>in</td>
+<td>IN 查询</td>
+</tr>
+<tr>
+<td>notIn</td>
+<td>NOT IN 查询</td>
+</tr>
+<tr>
+<td>isNull</td>
+<td>NULL 值查询</td>
+</tr>
+<tr>
+<td>isNotNull</td>
+<td>IS NOT NULL</td>
+</tr>
+<tr>
+<td>groupBy</td>
+<td>分组 GROUP BY</td>
+</tr>
+<tr>
+<td>having</td>
+<td>HAVING 关键词</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>排序 ORDER BY</td>
+</tr>
+<tr>
+<td>orderAsc</td>
+<td>ASC 排序 ORDER BY</td>
+</tr>
+<tr>
+<td>orderDesc</td>
+<td>DESC 排序 ORDER BY</td>
+</tr>
+<tr>
+<td>exists</td>
+<td>EXISTS 条件语句</td>
+</tr>
+<tr>
+<td>notExists</td>
+<td>NOT EXISTS 条件语句</td>
+</tr>
+<tr>
+<td>between</td>
+<td>BETWEEN 条件语句</td>
+</tr>
+<tr>
+<td>notBetween</td>
+<td>NOT BETWEEN 条件语句</td>
+</tr>
+<tr>
+<td>addFilter</td>
+<td>自由拼接 SQL</td>
+</tr>
+<tr>
+<td>last</td>
+<td>拼接在最后，例如：last(“LIMIT 1”)</td>
+</tr>
+<tr>
+<td><code>addFilterIfNeed</code></td>
+<td>其中可以写sql:如,<code>.addFilterIfNeed(StringUtils.equals(userId,&quot;1&quot;),&quot;date_format(FOLLOW_TIME,&#39;%Y-%m-%d&#39;)=date_format(NOW(),&#39;%Y-%m-%d&#39;)&quot;)</code></td>
+</tr>
+</tbody></table>
+<h3 id="ge、gt、le、lt、isNull、isNotNull"><a href="#ge、gt、le、lt、isNull、isNotNull" class="headerlink" title="ge、gt、le、lt、isNull、isNotNull"></a>ge、gt、le、lt、isNull、isNotNull</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 逻辑删除这个范围的数据</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.isNull(<span class="string">&quot;create_time&quot;</span>)</span><br><span class="line">            .isNotNull(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">            .ge(<span class="string">&quot;age&quot;</span>,<span class="number">12</span>);</span><br><span class="line">    System.out.println(userMapper.delete(queryWrapper));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">UPDATE user SET deleted=<span class="number">1</span> WHERE deleted=<span class="number">0</span> AND create_time IS NULL AND name IS NOT NULL AND age &gt;= ? </span><br></pre></td></tr></table></figure>
+
+<h3 id="eq、ne"><a href="#eq、ne" class="headerlink" title="eq、ne"></a>eq、ne</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出单个对象</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectOneTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Sandy&quot;</span>);</span><br><span class="line">    User user = userMapper.selectOne(queryWrapper);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=<span class="number">0</span> AND name = ? </span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：<code>selectOne</code>当查询到1条以上的数据时候，会抛错</p>
+<h3 id="between、notBetween"><a href="#between、notBetween" class="headerlink" title="between、notBetween"></a>between、notBetween</h3><blockquote>
+<p>包含大小边界</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出数量</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectCountTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.between(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line">    System.out.println(userMapper.selectCount(queryWrapper));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql:</span><br><span class="line"><span class="function">SELECT <span class="title">COUNT</span><span class="params">(<span class="number">1</span>)</span> FROM user WHERE deleted</span>=<span class="number">0</span> AND age BETWEEN ? AND ? </span><br></pre></td></tr></table></figure>
+
+<h3 id="allEq"><a href="#allEq" class="headerlink" title="allEq"></a>allEq</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询list</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectListTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;() &#123;&#123;</span><br><span class="line">        put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Sandy&quot;</span>);</span><br><span class="line">        put(<span class="string">&quot;age&quot;</span>, <span class="number">21</span>);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line">    queryWrapper.allEq(map);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=<span class="number">0</span> AND name = ? AND age = ? </span><br></pre></td></tr></table></figure>
+
+<h3 id="like、notLike、likeLeft、likeRight"><a href="#like、notLike、likeLeft、likeRight" class="headerlink" title="like、notLike、likeLeft、likeRight"></a>like、notLike、likeLeft、likeRight</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查询map</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectMapTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.notLike(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;T&quot;</span>)</span><br><span class="line">            .likeRight(<span class="string">&quot;email&quot;</span>, <span class="string">&quot;qq&quot;</span>);</span><br><span class="line">    List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectMaps(queryWrapper);</span><br><span class="line">    maps.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line">Preparing: SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=<span class="number">0</span> AND name NOT LIKE ? AND email LIKE ? </span><br><span class="line">Parameters: %T%(String), qq%(String)</span><br></pre></td></tr></table></figure>
+
+<h3 id="in、notIn、inSql、notinSql、exists、notExists"><a href="#in、notIn、inSql、notinSql、exists、notExists" class="headerlink" title="in、notIn、inSql、notinSql、exists、notExists"></a>in、notIn、inSql、notinSql、exists、notExists</h3><h4 id="in、notIn"><a href="#in、notIn" class="headerlink" title="in、notIn"></a>in、notIn</h4><ul>
+<li><p><code>notIn(&quot;age&quot;,&#123;1,2,3&#125;)</code>—&gt;<code>age not in (1,2,3)</code></p>
+</li>
+<li><p><code>notIn(&quot;age&quot;, 1, 2, 3)</code>—&gt;<code>age not in (1,2,3)</code></p>
+</li>
+</ul>
+<h4 id="inSql、notinSql：可以实现子查询"><a href="#inSql、notinSql：可以实现子查询" class="headerlink" title="inSql、notinSql：可以实现子查询"></a>inSql、notinSql：可以实现子查询</h4><ul>
+<li><p><code>inSql(&quot;age&quot;, &quot;1,2,3,4,5,6&quot;)</code>—&gt;<code>age in (1,2,3,4,5,6)</code></p>
+</li>
+<li><p><code>inSql(&quot;id&quot;, &quot;select id from table where id &lt; 3&quot;)</code>—&gt;<code>id in (select id from table where id &lt; 3)</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectObjs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    <span class="comment">//queryWrapper.in(&quot;id&quot;, 1, 2, 3);</span></span><br><span class="line">    queryWrapper.inSql(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;select id from user where id &lt; 3&quot;</span>);</span><br><span class="line">    List&lt;Object&gt; objects = userMapper.selectObjs(queryWrapper);<span class="comment">//返回值是Object列表</span></span><br><span class="line">    objects.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age,email,create_time,update_time,deleted,version FROM user WHERE deleted=<span class="number">0</span> <span class="function">AND id <span class="title">IN</span> <span class="params">(select id from user where id &lt; <span class="number">3</span>)</span> </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="or、and"><a href="#or、and" class="headerlink" title="or、and"></a>or、and</h3><blockquote>
+<p>不调用<code>or</code>则默认为使用 <code>and </code>连</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//修改值</span></span><br><span class="line">    User user = User.builder()</span><br><span class="line">            .age(<span class="number">99</span>)</span><br><span class="line">            .name(<span class="string">&quot;Andy&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">//修改条件</span></span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper = <span class="keyword">new</span> UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;h&quot;</span>)</span><br><span class="line">        .or()</span><br><span class="line">        .between(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.update(user, userUpdateWrapper);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br><span class="line">UPDATE user SET name=?, age=?, update_time=? WHERE deleted=<span class="number">0</span> AND name LIKE ? OR age BETWEEN ? AND ?</span><br></pre></td></tr></table></figure>
+
+<h3 id="嵌套or、嵌套and"><a href="#嵌套or、嵌套and" class="headerlink" title="嵌套or、嵌套and"></a>嵌套or、嵌套and</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//修改值</span></span><br><span class="line">    User user = User.builder()</span><br><span class="line">            .age(<span class="number">99</span>)</span><br><span class="line">            .name(<span class="string">&quot;Andy&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">//修改条件</span></span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper = <span class="keyword">new</span> UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">            .like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;h&quot;</span>)</span><br><span class="line">            .or(i -&gt; i.eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;李白&quot;</span>).ne(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>));</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.update(user, userUpdateWrapper);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UPDATE user SET name=?, age=?, update_time=? </span><br><span class="line">WHERE deleted=<span class="number">0</span> AND name LIKE ? </span><br><span class="line">OR ( name = ? AND age &lt;&gt; ? ) </span><br></pre></td></tr></table></figure>
+
+<h3 id="orderBy、orderByDesc、orderByAsc"><a href="#orderBy、orderByDesc、orderByAsc" class="headerlink" title="orderBy、orderByDesc、orderByAsc"></a>orderBy、orderByDesc、orderByAsc</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectListOrderBy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.orderByDesc(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age,email,create_time,update_time,deleted,version </span><br><span class="line">FROM user WHERE deleted=<span class="number">0</span> ORDER BY id DESC </span><br></pre></td></tr></table></figure>
+
+<h3 id="last"><a href="#last" class="headerlink" title="last"></a>last</h3><p>直接拼接到 sql 的最后</p>
+<p><strong>注意：</strong>只能调用一次,多次调用以最后一次为准 有sql注入的风险,请谨慎使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectListLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.last(<span class="string">&quot;limit 1&quot;</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age,email,create_time,update_time,deleted,version </span><br><span class="line">FROM user WHERE deleted=<span class="number">0</span> limit <span class="number">1</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="指定要查询的列"><a href="#指定要查询的列" class="headerlink" title="指定要查询的列"></a>指定要查询的列</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectListColumn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.select(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;age&quot;</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age FROM user WHERE deleted=<span class="number">0</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="set、setSql"><a href="#set、setSql" class="headerlink" title="set、setSql"></a>set、setSql</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdateSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//修改值</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setAge(<span class="number">99</span>);</span><br><span class="line">    <span class="comment">//修改条件</span></span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper = <span class="keyword">new</span> UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;h&quot;</span>)</span><br><span class="line">        .set(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;老李头&quot;</span>)<span class="comment">//除了可以查询还可以使用set设置修改的字段</span></span><br><span class="line">        .setSql(<span class="string">&quot; email = &#x27;123@qq.com&#x27;&quot;</span>);<span class="comment">//可以有子查询</span></span><br><span class="line">    <span class="keyword">int</span> result = userMapper.update(user, userUpdateWrapper);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UPDATE user SET age=?, update_time=?, name=?, email = <span class="string">&#x27;123@qq.com&#x27;</span> WHERE deleted=<span class="number">0</span> AND name LIKE ? </span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -500,7 +689,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">构建工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">主类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93"><span class="nav-number">1.3.2.</span> <span class="nav-text">实体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAMapper%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.3.3.</span> <span class="nav-text">创建Mapper接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-puls%E4%B9%8BCRUD"><span class="nav-number">1.4.</span> <span class="nav-text">MyBatis-puls之CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-Insert"><span class="nav-number">1.4.1.</span> <span class="nav-text">插入操作(Insert)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%AD%96%E7%95%A5"><span class="nav-number">1.4.2.</span> <span class="nav-text">主键策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C-update"><span class="nav-number">1.4.3.</span> <span class="nav-text">更新操作(update)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEID%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">根据ID更新操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">自动填充</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85"><span class="nav-number">1.4.3.2.1.</span> <span class="nav-text">数据库表中的自动填充</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%B8%8A%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.4.3.2.2.</span> <span class="nav-text">实体类上添加注解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%BA%90%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.3.2.3.</span> <span class="nav-text">实现源对象的接口</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">乐观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%B7%BB%E5%8A%A0version%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">数据库中添加version字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E6%B7%BB%E5%8A%A0version%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">实体类添加version字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%BA%90%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="nav-number">1.4.3.3.3.</span> <span class="nav-text">设置源对象初始值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.4.3.3.4.</span> <span class="nav-text">创建配置类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%B9%90%E8%A7%82%E9%94%81%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F"><span class="nav-number">1.4.3.3.5.</span> <span class="nav-text">测试乐观锁可以修改成功</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%B9%90%E8%A7%82%E9%94%81%E4%BF%AE%E6%94%B9%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.4.3.3.6.</span> <span class="nav-text">测试乐观锁修改失败</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C-select"><span class="nav-number">1.4.4.</span> <span class="nav-text">查询操作(select)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEid%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">根据id查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">批量查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.4.3.</span> <span class="nav-text">简单条件查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5"><span class="nav-number">1.4.5.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%B1%BB-1"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">创建配置类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">测试分页查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95selectMapsPage%E5%88%86%E9%A1%B5%EF%BC%9A%E7%BB%93%E6%9E%9C%E9%9B%86%E6%98%AFmap"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">测试selectMapsPage分页：结果集是map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C-delete"><span class="nav-number">1.4.6.</span> <span class="nav-text">删除操作(delete)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEid%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">根据id删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">批量删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">简单的条件查询删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.4.</span> <span class="nav-text">逻辑删除</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%96%B0%E5%A2%9Edeleted%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.6.4.1.</span> <span class="nav-text">数据库中新增deleted字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E6%B7%BB%E5%8A%A0deleted%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.6.4.2.</span> <span class="nav-text">实体类添加deleted字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#application-yml%E6%96%87%E4%BB%B6%E4%B8%AD%E5%8A%A0%E5%85%A5%E9%85%8D%E7%BD%AE"><span class="nav-number">1.4.6.4.3.</span> <span class="nav-text">application.yml文件中加入配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8mybatisPlusConfig%E4%B8%AD%E6%B3%A8%E5%86%8CBean"><span class="nav-number">1.4.6.4.4.</span> <span class="nav-text">在mybatisPlusConfig中注册Bean</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">构建工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">开始使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E7%B1%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">主类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93"><span class="nav-number">1.3.2.</span> <span class="nav-text">实体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAMapper%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.3.3.</span> <span class="nav-text">创建Mapper接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-puls%E4%B9%8BCRUD"><span class="nav-number">1.4.</span> <span class="nav-text">MyBatis-puls之CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C-Insert"><span class="nav-number">1.4.1.</span> <span class="nav-text">插入操作(Insert)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%AD%96%E7%95%A5"><span class="nav-number">1.4.2.</span> <span class="nav-text">主键策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C-update"><span class="nav-number">1.4.3.</span> <span class="nav-text">更新操作(update)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEID%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">根据ID更新操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">自动填充</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85"><span class="nav-number">1.4.3.2.1.</span> <span class="nav-text">数据库表中的自动填充</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E4%B8%8A%E6%B7%BB%E5%8A%A0%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.4.3.2.2.</span> <span class="nav-text">实体类上添加注解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%BA%90%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.4.3.2.3.</span> <span class="nav-text">实现源对象的接口</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">乐观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%B7%BB%E5%8A%A0version%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">数据库中添加version字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E6%B7%BB%E5%8A%A0version%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">实体类添加version字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%BA%90%E5%AF%B9%E8%B1%A1%E5%88%9D%E5%A7%8B%E5%80%BC"><span class="nav-number">1.4.3.3.3.</span> <span class="nav-text">设置源对象初始值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%B1%BB"><span class="nav-number">1.4.3.3.4.</span> <span class="nav-text">创建配置类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%B9%90%E8%A7%82%E9%94%81%E5%8F%AF%E4%BB%A5%E4%BF%AE%E6%94%B9%E6%88%90%E5%8A%9F"><span class="nav-number">1.4.3.3.5.</span> <span class="nav-text">测试乐观锁可以修改成功</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%B9%90%E8%A7%82%E9%94%81%E4%BF%AE%E6%94%B9%E5%A4%B1%E8%B4%A5"><span class="nav-number">1.4.3.3.6.</span> <span class="nav-text">测试乐观锁修改失败</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C-select"><span class="nav-number">1.4.4.</span> <span class="nav-text">查询操作(select)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEid%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">根据id查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">批量查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.4.3.</span> <span class="nav-text">简单条件查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5"><span class="nav-number">1.4.5.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E7%B1%BB-1"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">创建配置类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">测试分页查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95selectMapsPage%E5%88%86%E9%A1%B5%EF%BC%9A%E7%BB%93%E6%9E%9C%E9%9B%86%E6%98%AFmap"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">测试selectMapsPage分页：结果集是map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C-delete"><span class="nav-number">1.4.6.</span> <span class="nav-text">删除操作(delete)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AEid%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">根据id删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">批量删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">简单的条件查询删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%88%A0%E9%99%A4"><span class="nav-number">1.4.6.4.</span> <span class="nav-text">逻辑删除</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%96%B0%E5%A2%9Edeleted%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.6.4.1.</span> <span class="nav-text">数据库中新增deleted字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E6%B7%BB%E5%8A%A0deleted%E5%AD%97%E6%AE%B5"><span class="nav-number">1.4.6.4.2.</span> <span class="nav-text">实体类添加deleted字段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#application-yml%E6%96%87%E4%BB%B6%E4%B8%AD%E5%8A%A0%E5%85%A5%E9%85%8D%E7%BD%AE"><span class="nav-number">1.4.6.4.3.</span> <span class="nav-text">application.yml文件中加入配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8mybatisPlusConfig%E4%B8%AD%E6%B3%A8%E5%86%8CBean"><span class="nav-number">1.4.6.4.4.</span> <span class="nav-text">在mybatisPlusConfig中注册Bean</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.5.</span> <span class="nav-text">条件查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ge%E3%80%81gt%E3%80%81le%E3%80%81lt%E3%80%81isNull%E3%80%81isNotNull"><span class="nav-number">1.5.1.</span> <span class="nav-text">ge、gt、le、lt、isNull、isNotNull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eq%E3%80%81ne"><span class="nav-number">1.5.2.</span> <span class="nav-text">eq、ne</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#between%E3%80%81notBetween"><span class="nav-number">1.5.3.</span> <span class="nav-text">between、notBetween</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#allEq"><span class="nav-number">1.5.4.</span> <span class="nav-text">allEq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#like%E3%80%81notLike%E3%80%81likeLeft%E3%80%81likeRight"><span class="nav-number">1.5.5.</span> <span class="nav-text">like、notLike、likeLeft、likeRight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#in%E3%80%81notIn%E3%80%81inSql%E3%80%81notinSql%E3%80%81exists%E3%80%81notExists"><span class="nav-number">1.5.6.</span> <span class="nav-text">in、notIn、inSql、notinSql、exists、notExists</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#in%E3%80%81notIn"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">in、notIn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inSql%E3%80%81notinSql%EF%BC%9A%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">inSql、notinSql：可以实现子查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#or%E3%80%81and"><span class="nav-number">1.5.7.</span> <span class="nav-text">or、and</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97or%E3%80%81%E5%B5%8C%E5%A5%97and"><span class="nav-number">1.5.8.</span> <span class="nav-text">嵌套or、嵌套and</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#orderBy%E3%80%81orderByDesc%E3%80%81orderByAsc"><span class="nav-number">1.5.9.</span> <span class="nav-text">orderBy、orderByDesc、orderByAsc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">1.5.10.</span> <span class="nav-text">last</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E8%A6%81%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%88%97"><span class="nav-number">1.5.11.</span> <span class="nav-text">指定要查询的列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set%E3%80%81setSql"><span class="nav-number">1.5.12.</span> <span class="nav-text">set、setSql</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -565,12 +754,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">283k</span>
+    <span title="站点总字数">290k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4:17</span>
+    <span title="站点阅读时长">4:23</span>
 </div>
 
         

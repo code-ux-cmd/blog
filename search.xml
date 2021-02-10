@@ -2916,6 +2916,193 @@
 <h5 id="在mybatisPlusConfig中注册Bean"><a href="#在mybatisPlusConfig中注册Bean" class="headerlink" title="在mybatisPlusConfig中注册Bean"></a>在mybatisPlusConfig中注册Bean</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 逻辑删除</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ISqlInjector <span class="title">sqlInjector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> LogicSqlInjector();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意</strong> ：数据库中deleted必须有值</p>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p><a href="https://imgchr.com/i/ywHcm8"><img src="https://s3.ax1x.com/2021/02/10/ywHcm8.png" alt="ywHcm8.png"></a></p>
+<ul>
+<li>Wrapper ： 条件构造抽象类，最顶端父类</li>
+<li>AbstractWrapper ： 用于查询条件封装，生成 sql 的 where 条件</li>
+<li>QueryWrapper ： Entity 对象封装操作类，不是用lambda语法</li>
+<li>UpdateWrapper ： Update 条件封装，用于Entity对象更新操作</li>
+<li>AbstractLambdaWrapper ： Lambda 语法使用 Wrapper统一处理解析 lambda 获取 column。</li>
+<li>LambdaQueryWrapper ：用于Lambda语法使用的查询Wrapper</li>
+<li>LambdaUpdateWrapper ： Lambda 更新封装Wrapper</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>查询方式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>setSqlSelect</td>
+<td>设置 SELECT 查询字段</td>
+</tr>
+<tr>
+<td>where</td>
+<td>WHERE 语句，拼接 + <code>WHERE 条件</code></td>
+</tr>
+<tr>
+<td>and</td>
+<td>AND 语句，拼接 + <code>AND 字段=值</code></td>
+</tr>
+<tr>
+<td>andNew</td>
+<td>AND 语句，拼接 + <code>AND (字段=值)</code></td>
+</tr>
+<tr>
+<td>or</td>
+<td>OR 语句，拼接 + <code>OR 字段=值</code></td>
+</tr>
+<tr>
+<td>orNew</td>
+<td>OR 语句，拼接 + <code>OR (字段=值)</code></td>
+</tr>
+<tr>
+<td>eq</td>
+<td>等于=</td>
+</tr>
+<tr>
+<td>allEq</td>
+<td>基于 map 内容等于=</td>
+</tr>
+<tr>
+<td>ne</td>
+<td>不等于&lt;&gt;</td>
+</tr>
+<tr>
+<td>gt</td>
+<td>大于&gt;</td>
+</tr>
+<tr>
+<td>ge</td>
+<td>大于等于&gt;=</td>
+</tr>
+<tr>
+<td>lt</td>
+<td>小于&lt;</td>
+</tr>
+<tr>
+<td>le</td>
+<td>小于等于&lt;=</td>
+</tr>
+<tr>
+<td>like</td>
+<td>模糊查询 LIKE</td>
+</tr>
+<tr>
+<td>notLike</td>
+<td>模糊查询 NOT LIKE</td>
+</tr>
+<tr>
+<td>in</td>
+<td>IN 查询</td>
+</tr>
+<tr>
+<td>notIn</td>
+<td>NOT IN 查询</td>
+</tr>
+<tr>
+<td>isNull</td>
+<td>NULL 值查询</td>
+</tr>
+<tr>
+<td>isNotNull</td>
+<td>IS NOT NULL</td>
+</tr>
+<tr>
+<td>groupBy</td>
+<td>分组 GROUP BY</td>
+</tr>
+<tr>
+<td>having</td>
+<td>HAVING 关键词</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>排序 ORDER BY</td>
+</tr>
+<tr>
+<td>orderAsc</td>
+<td>ASC 排序 ORDER BY</td>
+</tr>
+<tr>
+<td>orderDesc</td>
+<td>DESC 排序 ORDER BY</td>
+</tr>
+<tr>
+<td>exists</td>
+<td>EXISTS 条件语句</td>
+</tr>
+<tr>
+<td>notExists</td>
+<td>NOT EXISTS 条件语句</td>
+</tr>
+<tr>
+<td>between</td>
+<td>BETWEEN 条件语句</td>
+</tr>
+<tr>
+<td>notBetween</td>
+<td>NOT BETWEEN 条件语句</td>
+</tr>
+<tr>
+<td>addFilter</td>
+<td>自由拼接 SQL</td>
+</tr>
+<tr>
+<td>last</td>
+<td>拼接在最后，例如：last(“LIMIT 1”)</td>
+</tr>
+<tr>
+<td><code>addFilterIfNeed</code></td>
+<td>其中可以写sql:如,<code>.addFilterIfNeed(StringUtils.equals(userId,&quot;1&quot;),&quot;date_format(FOLLOW_TIME,&#39;%Y-%m-%d&#39;)=date_format(NOW(),&#39;%Y-%m-%d&#39;)&quot;)</code></td>
+</tr>
+</tbody></table>
+<h3 id="ge、gt、le、lt、isNull、isNotNull"><a href="#ge、gt、le、lt、isNull、isNotNull" class="headerlink" title="ge、gt、le、lt、isNull、isNotNull"></a>ge、gt、le、lt、isNull、isNotNull</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 逻辑删除这个范围的数据</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.isNull(<span class="string">&quot;create_time&quot;</span>)</span><br><span class="line">            .isNotNull(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">            .ge(<span class="string">&quot;age&quot;</span>,<span class="number">12</span>);</span><br><span class="line">    System.out.println(userMapper.delete(queryWrapper));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">UPDATE user SET deleted=<span class="number">1</span> WHERE deleted=<span class="number">0</span> AND create_time IS NULL AND name IS NOT NULL AND age &gt;= ? </span><br></pre></td></tr></table></figure>
+
+<h3 id="eq、ne"><a href="#eq、ne" class="headerlink" title="eq、ne"></a>eq、ne</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 输出单个对象</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectOneTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Sandy&quot;</span>);</span><br><span class="line">    User user = userMapper.selectOne(queryWrapper);</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=<span class="number">0</span> AND name = ? </span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：<code>selectOne</code>当查询到1条以上的数据时候，会抛错</p>
+<h3 id="between、notBetween"><a href="#between、notBetween" class="headerlink" title="between、notBetween"></a>between、notBetween</h3><blockquote>
+<p>包含大小边界</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 输出数量</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectCountTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.between(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line">    System.out.println(userMapper.selectCount(queryWrapper));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql:</span><br><span class="line"><span class="function">SELECT <span class="title">COUNT</span><span class="params">(<span class="number">1</span>)</span> FROM user WHERE deleted</span>=<span class="number">0</span> AND age BETWEEN ? AND ? </span><br></pre></td></tr></table></figure>
+
+<h3 id="allEq"><a href="#allEq" class="headerlink" title="allEq"></a>allEq</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查询list</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectListTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;() &#123;&#123;</span><br><span class="line">        put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Sandy&quot;</span>);</span><br><span class="line">        put(<span class="string">&quot;age&quot;</span>, <span class="number">21</span>);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line">    queryWrapper.allEq(map);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sql：</span><br><span class="line">SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=<span class="number">0</span> AND name = ? AND age = ? </span><br></pre></td></tr></table></figure>
+
+<h3 id="like、notLike、likeLeft、likeRight"><a href="#like、notLike、likeLeft、likeRight" class="headerlink" title="like、notLike、likeLeft、likeRight"></a>like、notLike、likeLeft、likeRight</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 查询map</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectMapTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.notLike(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;T&quot;</span>)</span><br><span class="line">            .likeRight(<span class="string">&quot;email&quot;</span>, <span class="string">&quot;qq&quot;</span>);</span><br><span class="line">    List&lt;Map&lt;String, Object&gt;&gt; maps = userMapper.selectMaps(queryWrapper);</span><br><span class="line">    maps.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line">Preparing: SELECT id,name,age,email,create_time,update_time,version,deleted FROM user WHERE deleted=<span class="number">0</span> AND name NOT LIKE ? AND email LIKE ? </span><br><span class="line">Parameters: %T%(String), qq%(String)</span><br></pre></td></tr></table></figure>
+
+<h3 id="in、notIn、inSql、notinSql、exists、notExists"><a href="#in、notIn、inSql、notinSql、exists、notExists" class="headerlink" title="in、notIn、inSql、notinSql、exists、notExists"></a>in、notIn、inSql、notinSql、exists、notExists</h3><h4 id="in、notIn"><a href="#in、notIn" class="headerlink" title="in、notIn"></a>in、notIn</h4><ul>
+<li><p><code>notIn(&quot;age&quot;,&#123;1,2,3&#125;)</code>—&gt;<code>age not in (1,2,3)</code></p>
+</li>
+<li><p><code>notIn(&quot;age&quot;, 1, 2, 3)</code>—&gt;<code>age not in (1,2,3)</code></p>
+</li>
+</ul>
+<h4 id="inSql、notinSql：可以实现子查询"><a href="#inSql、notinSql：可以实现子查询" class="headerlink" title="inSql、notinSql：可以实现子查询"></a>inSql、notinSql：可以实现子查询</h4><ul>
+<li><p><code>inSql(&quot;age&quot;, &quot;1,2,3,4,5,6&quot;)</code>—&gt;<code>age in (1,2,3,4,5,6)</code></p>
+</li>
+<li><p><code>inSql(&quot;id&quot;, &quot;select id from table where id &lt; 3&quot;)</code>—&gt;<code>id in (select id from table where id &lt; 3)</code></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectObjs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    <span class="comment">//queryWrapper.in(&quot;id&quot;, 1, 2, 3);</span></span><br><span class="line">    queryWrapper.inSql(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;select id from user where id &lt; 3&quot;</span>);</span><br><span class="line">    List&lt;Object&gt; objects = userMapper.selectObjs(queryWrapper);<span class="comment">//返回值是Object列表</span></span><br><span class="line">    objects.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age,email,create_time,update_time,deleted,version FROM user WHERE deleted=<span class="number">0</span> <span class="function">AND id <span class="title">IN</span> <span class="params">(select id from user where id &lt; <span class="number">3</span>)</span> </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="or、and"><a href="#or、and" class="headerlink" title="or、and"></a>or、and</h3><blockquote>
+<p>不调用<code>or</code>则默认为使用 <code>and </code>连</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//修改值</span></span><br><span class="line">    User user = User.builder()</span><br><span class="line">            .age(<span class="number">99</span>)</span><br><span class="line">            .name(<span class="string">&quot;Andy&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">//修改条件</span></span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper = <span class="keyword">new</span> UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;h&quot;</span>)</span><br><span class="line">        .or()</span><br><span class="line">        .between(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>, <span class="number">30</span>);</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.update(user, userUpdateWrapper);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br><span class="line">UPDATE user SET name=?, age=?, update_time=? WHERE deleted=<span class="number">0</span> AND name LIKE ? OR age BETWEEN ? AND ?</span><br></pre></td></tr></table></figure>
+
+<h3 id="嵌套or、嵌套and"><a href="#嵌套or、嵌套and" class="headerlink" title="嵌套or、嵌套and"></a>嵌套or、嵌套and</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//修改值</span></span><br><span class="line">    User user = User.builder()</span><br><span class="line">            .age(<span class="number">99</span>)</span><br><span class="line">            .name(<span class="string">&quot;Andy&quot;</span>)</span><br><span class="line">            .build();</span><br><span class="line">    <span class="comment">//修改条件</span></span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper = <span class="keyword">new</span> UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">            .like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;h&quot;</span>)</span><br><span class="line">            .or(i -&gt; i.eq(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;李白&quot;</span>).ne(<span class="string">&quot;age&quot;</span>, <span class="number">20</span>));</span><br><span class="line">    <span class="keyword">int</span> result = userMapper.update(user, userUpdateWrapper);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UPDATE user SET name=?, age=?, update_time=? </span><br><span class="line">WHERE deleted=<span class="number">0</span> AND name LIKE ? </span><br><span class="line">OR ( name = ? AND age &lt;&gt; ? ) </span><br></pre></td></tr></table></figure>
+
+<h3 id="orderBy、orderByDesc、orderByAsc"><a href="#orderBy、orderByDesc、orderByAsc" class="headerlink" title="orderBy、orderByDesc、orderByAsc"></a>orderBy、orderByDesc、orderByAsc</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectListOrderBy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.orderByDesc(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age,email,create_time,update_time,deleted,version </span><br><span class="line">FROM user WHERE deleted=<span class="number">0</span> ORDER BY id DESC </span><br></pre></td></tr></table></figure>
+
+<h3 id="last"><a href="#last" class="headerlink" title="last"></a>last</h3><p>直接拼接到 sql 的最后</p>
+<p><strong>注意：</strong>只能调用一次,多次调用以最后一次为准 有sql注入的风险,请谨慎使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectListLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.last(<span class="string">&quot;limit 1&quot;</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age,email,create_time,update_time,deleted,version </span><br><span class="line">FROM user WHERE deleted=<span class="number">0</span> limit <span class="number">1</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="指定要查询的列"><a href="#指定要查询的列" class="headerlink" title="指定要查询的列"></a>指定要查询的列</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSelectListColumn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    QueryWrapper&lt;User&gt; queryWrapper = <span class="keyword">new</span> QueryWrapper&lt;&gt;();</span><br><span class="line">    queryWrapper.select(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;age&quot;</span>);</span><br><span class="line">    List&lt;User&gt; users = userMapper.selectList(queryWrapper);</span><br><span class="line">    users.forEach(System.out::println);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SELECT id,name,age FROM user WHERE deleted=<span class="number">0</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="set、setSql"><a href="#set、setSql" class="headerlink" title="set、setSql"></a>set、setSql</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdateSet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//修改值</span></span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setAge(<span class="number">99</span>);</span><br><span class="line">    <span class="comment">//修改条件</span></span><br><span class="line">    UpdateWrapper&lt;User&gt; userUpdateWrapper = <span class="keyword">new</span> UpdateWrapper&lt;&gt;();</span><br><span class="line">    userUpdateWrapper</span><br><span class="line">        .like(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;h&quot;</span>)</span><br><span class="line">        .set(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;老李头&quot;</span>)<span class="comment">//除了可以查询还可以使用set设置修改的字段</span></span><br><span class="line">        .setSql(<span class="string">&quot; email = &#x27;123@qq.com&#x27;&quot;</span>);<span class="comment">//可以有子查询</span></span><br><span class="line">    <span class="keyword">int</span> result = userMapper.update(user, userUpdateWrapper);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">UPDATE user SET age=?, update_time=?, name=?, email = <span class="string">&#x27;123@qq.com&#x27;</span> WHERE deleted=<span class="number">0</span> AND name LIKE ? </span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>数据库</category>
